@@ -1223,3 +1223,60 @@
     font-size:12px !important;
   }
 }
+
+/* =========================================================
+   FINAL HERO BLUR FIX
+   Ensures the portrait frame blur renders consistently
+   in production and development.
+   ========================================================= */
+
+.device-frame::before,
+.device-frame::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  top: auto !important;
+  bottom: 0 !important;
+  width: 36% !important;
+  height: 20% !important;
+  z-index: 9 !important;
+  background: transparent !important;
+  pointer-events: none !important;
+
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+.device-frame::before {
+  left: 0 !important;
+  right: auto !important;
+
+  -webkit-mask-image: radial-gradient(
+    ellipse at bottom left,
+    #000 40%,
+    transparent 80%
+  ) !important;
+
+  mask-image: radial-gradient(
+    ellipse at bottom left,
+    #000 56%,
+    transparent 80%
+  ) !important;
+}
+
+.device-frame::after {
+  right: 0 !important;
+  left: auto !important;
+
+  -webkit-mask-image: radial-gradient(
+    ellipse at bottom right,
+    #000 40%,
+    transparent 80%
+  ) !important;
+
+  mask-image: radial-gradient(
+    ellipse at bottom right,
+    #000 40%,
+    transparent 80%
+  ) !important;
+}
