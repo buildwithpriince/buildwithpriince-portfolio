@@ -453,7 +453,7 @@
 @media(max-width:760px){.hero-copy{top:112px}}
 .photo-hover-target{inset:0;border-radius:27px;overflow:hidden}
 .photo-hover-target::before{display:none}
-.photo-hover-target .portrait-image{left:0;right:0;width:100%;height:100%;object-fit:cover;object-position:290% 72%;   /* nudge left */transform:scale(1.42);transform-origin:73% 68%;-webkit-mask-image:none;mask-image:none;filter:saturate(.96) contrast(1.04)}
+.photo-hover-target .portrait-image{left:0;right:0;width:100%;height:100%;object-fit:cover;object-position:350% 72%;   /* nudge left */transform:scale(1.42);transform-origin:73% 68%;-webkit-mask-image:none;mask-image:none;filter:saturate(.96) contrast(1.04)}
 @media(max-width:760px){.photo-hover-target{border-radius:17px}.photo-hover-target .portrait-image{object-position:75% 72%;transform:scale(1.28);transform-origin:75% 68%}}
 .hero-copy h1{font-size:clamp(43px,4.7vw,68px);line-height:.98}
 .hero-copy>a{display:inline-flex;align-items:center;gap:18px;margin-top:28px;padding:13px 17px;border:1px solid var(--coral);border-radius:0;background:var(--coral);color:#0d0b10;box-shadow:5px 5px 0 var(--pollen);font:700 10px 'IBM Plex Mono',monospace;letter-spacing:1.1px;transition:background .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease}
