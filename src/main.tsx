@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { createRoot } from 'react-dom/client'
+import { injectSpeedInsights } from '@vercel/speed-insights'
 import './styles.css'
 import './cleanup.css'
+
+// Initialize Vercel Speed Insights
+injectSpeedInsights()
 
 type Project = { name: string; file: string; summary: string; why: string; proof: string; stack: string; finding: string; action: string; url: string; visual: 'code' | 'risk' | 'ledger' }
 const projects: Project[] = [
