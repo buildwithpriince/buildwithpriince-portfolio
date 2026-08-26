@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { createRoot } from 'react-dom/client'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import './styles.css'
 import './cleanup.css'
 
@@ -77,7 +78,7 @@ function NavBar() {
 }
 
 function App() {
-  return <main><OrbitControl />
+  return <main><SpeedInsights /><OrbitControl />
     <NavBar />
     <section className="atlas-hero" id="top"><div className="hero-label">AVAILABLE FOR FULL-STACK / AI PRODUCT WORK<br />OPEN TO INTERNSHIPS · 2026</div><div className="hero-name" aria-hidden="true">Prince<br /><span>Agrawal</span></div><div className="hero-device"><div className="device-frame" aria-label="Portrait hover reveals childhood photo"><div className="device-corners" /><div className="photo-hover-target" onMouseMove={updatePortraitHover} onMouseLeave={event => { event.currentTarget.style.removeProperty('--hover-x'); event.currentTarget.style.removeProperty('--hover-y') }}><img className="portrait-image" src="/prince-portrait.jpg" alt="Prince Agrawal" /><img className="childhood-hover-image" src="/childhood-photo-hd.jpg" alt="Childhood photo of Prince Agrawal" /></div><span className="photo-placeholder">PHOTO — swap in later</span><i className="device-scan" /></div><div className="device-readout"><small>SUBJECT / 001</small><strong>PRINCE AGRAWAL</strong><span><i /> AVAILABLE</span></div></div><div className="hero-copy"><h1><span>I’m Prince Agrawal</span><span><em>a full-stack builder</em></span><span>shipping AI-powered</span><span>products.</span></h1><p>React, TypeScript, Node, FastAPI and Gemini-powered tools — turning real problems into useful products.</p><a href="#work">SEE THE WORK <b>↓</b></a></div><div className="hero-foot"><span>BUILD · TEST · SHIP</span><span>SCROLL TO EXAMINE</span></div></section>
     <section className="work-atlas" id="work"><div className="work-intro"><div><p className="section-kicker">SELECTED WORK / 03 INSTRUMENTS</p><h2>I build useful<br />things for the <em>curious.</em></h2></div><p>Tools for debugging code, making financial decisions clearer, and solving the messy problems that sit between people and systems.</p></div><div className="atlas-grid">{projects.map((project, index) => <ProjectInstrument key={project.name} project={project} index={index} />)}</div></section>
