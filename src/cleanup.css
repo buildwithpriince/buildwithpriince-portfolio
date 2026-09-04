@@ -1320,3 +1320,7 @@
     );
   }
 }
+
+.photo-hover-target .portrait-image {
+  object-position: 80% 62% !important;
+}
