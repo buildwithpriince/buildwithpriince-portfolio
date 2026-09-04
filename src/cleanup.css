@@ -118,39 +118,6 @@
 .visual-code .health-track{height:3px;margin-top:10px;background:#39424e}.visual-code .health-track i{background:var(--pollen)}
 @media(max-width:760px){.visual-code{padding-left:14px;padding-right:14px}.visual-code .code-chrome{margin-left:-14px;margin-right:-14px}.visual-code code{font-size:10px}.code-cursor{left:194px}}
 
-/* Clarity: an aesthetic financial compass rather than a generic dashboard widget. */
-.visual-risk{height:184px;padding:13px 14px;background:rgba(23,33,61,.1);border-color:rgba(230,243,234,.6)}
-.clarity-header{display:flex;justify-content:space-between;color:rgba(230,243,234,.76);font:9px 'IBM Plex Mono';letter-spacing:.07em}.clarity-header strong{color:var(--pollen);font-weight:600}
-.clarity-compass{position:relative;height:125px;margin-top:5px}
-.compass-ring{position:absolute;left:50%;top:8px;border:1px solid rgba(230,243,234,.5);border-radius:50%;transform:translateX(-50%)}
-.ring-one{width:103px;height:103px}.ring-two{width:67px;height:67px;top:26px;border-color:rgba(242,240,92,.58)}
-.compass-core{position:absolute;left:50%;top:42px;z-index:2;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--pollen);color:var(--navy);font:700 12px 'IBM Plex Mono';transform:translateX(-50%);box-shadow:0 0 0 7px rgba(242,240,92,.12)}
-.compass-core small{position:absolute;top:39px;color:rgba(230,243,234,.7);font:7px 'IBM Plex Mono';letter-spacing:.05em}
-.compass-node{position:absolute;z-index:3;display:grid;place-items:center;width:19px;height:19px;border:1px solid var(--pollen);border-radius:50%;background:var(--blue);color:var(--pollen);font:8px 'IBM Plex Mono';font-style:normal}.node-utility{left:calc(50% - 56px);top:22px}.node-upi{left:calc(50% + 37px);top:55px}.node-repay{left:calc(50% - 42px);top:92px}
-.clarity-compass svg{position:absolute;left:50%;bottom:-1px;width:180px;height:100px;overflow:visible;transform:translateX(-50%);opacity:.42}.clarity-compass path{fill:none;stroke:var(--mint);stroke-width:1.5;stroke-dasharray:3 4}
-.clarity-caption{display:flex;justify-content:space-between;color:rgba(230,243,234,.68);font:7px 'IBM Plex Mono';letter-spacing:.06em}
-.visual-risk .signal-constellation,.visual-risk .signal-row,.visual-risk>small,.visual-risk .signal-header{display:none}
-@media(max-width:760px){.visual-risk{height:174px}.clarity-compass{height:116px}.compass-core{top:38px}.ring-one{width:96px;height:96px}.ring-two{width:63px;height:63px;top:24px}.clarity-compass svg{transform:translateX(-50%) scale(.9);transform-origin:center bottom}}
-
-/* Replace the earlier compass experiment with one clean, self-contained instrument. */
-.visual-risk{height:170px!important;padding:13px 14px!important;background:#1d2430!important;border:1px solid rgba(230,243,234,.58)!important;color:var(--mint)!important;overflow:hidden}
-.visual-risk .clarity-header{position:static!important;display:flex!important;align-items:center;justify-content:space-between;height:auto;margin:0;padding:0;color:rgba(230,243,234,.7);font:9px 'IBM Plex Mono';letter-spacing:.08em}
-.visual-risk .clarity-header span,.visual-risk .clarity-header strong{position:static!important;display:block!important;margin:0!important;color:inherit!important;font:inherit!important}
-.visual-risk .clarity-header strong{color:var(--pollen)!important}
-.clarity-instrument{position:relative;display:flex;gap:15px;height:113px;margin-top:7px}
-.clarity-score{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;align-items:center;width:76px;height:76px;margin-top:11px;border:1px solid rgba(242,240,92,.7);border-radius:50%;background:rgba(55,75,255,.3);box-shadow:0 0 0 8px rgba(242,240,92,.07)}
-.clarity-score:after{content:"";position:absolute;inset:7px;border:1px dashed rgba(230,243,234,.35);border-radius:50%}
-.clarity-score b{position:relative;z-index:1;color:var(--pollen);font:700 20px 'IBM Plex Mono';letter-spacing:-.08em}.clarity-score small{position:relative;z-index:1;margin-top:3px;color:rgba(230,243,234,.68);font:7px/1.2 'IBM Plex Mono';letter-spacing:.08em;text-align:center}
-.clarity-signals{position:relative;z-index:2;display:grid;gap:6px;align-content:center;flex:1}
-.signal-chip{display:grid;grid-template-columns:18px 1fr auto;align-items:center;gap:7px;min-height:26px;padding:4px 6px;border:1px solid rgba(230,243,234,.18);background:rgba(230,243,234,.06);color:var(--mint);font:8px 'IBM Plex Mono';letter-spacing:.05em}
-.signal-chip i{display:grid;place-items:center;width:16px;height:16px;border:1px solid var(--pollen);border-radius:50%;color:var(--pollen);font-style:normal;font-size:7px}
-.signal-chip span{display:flex;flex-direction:column;gap:2px;position:static!important;color:rgba(230,243,234,.8);font:inherit}.signal-chip span small{position:static!important;color:rgba(230,243,234,.45);font:6px 'IBM Plex Mono';letter-spacing:.07em}
-.signal-chip>b{color:var(--pollen);font:600 9px 'IBM Plex Mono'}
-.clarity-instrument:before{content:"";position:absolute;left:64px;top:47px;width:35px;border-top:1px dashed rgba(242,240,92,.42);transform:rotate(-12deg)}
-.clarity-foot{display:flex;justify-content:space-between;padding-top:4px;border-top:1px solid rgba(230,243,234,.18);color:rgba(230,243,234,.5);font:7px 'IBM Plex Mono';letter-spacing:.06em}
-.visual-risk .clarity-compass,.visual-risk .signal-constellation,.visual-risk .signal-row,.visual-risk>small,.visual-risk .compass-ring,.visual-risk .compass-node,.visual-risk .compass-core,.visual-risk svg,.visual-risk .clarity-caption{display:none!important}
-@media(max-width:760px){.visual-risk{height:164px!important}.clarity-instrument{gap:10px;height:107px}.clarity-score{width:68px;height:68px}.clarity-instrument:before{left:57px;width:28px}.signal-chip{font-size:7px}}
-
 /* Clarity score showcase: a compact, explainable score rather than a generic widget. */
 .visual-risk{height:170px!important;padding:13px 14px!important;background:#1d2430!important;border:1px solid rgba(230,243,234,.58)!important}
 .credit-header{display:flex;justify-content:space-between;color:rgba(230,243,234,.7);font:9px 'IBM Plex Mono';letter-spacing:.07em}.credit-header strong{color:var(--pollen);font-weight:600}
@@ -223,35 +190,6 @@
 @media(max-width:900px){.about-copy h2,.connect-atlas h2{font-size:clamp(50px,7vw,76px)}.about-copy>p:not(.section-kicker){font-size:16px}}
 @media(max-width:760px){.hero-copy h1{font-size:48px;line-height:.96;letter-spacing:-.05em}.hero-copy>p:not(.hero-kicker){font-size:15px}.atlas-nav{background:rgba(249,255,248,.55);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}.about-atlas,.connect-atlas{background:linear-gradient(145deg,rgba(249,255,248,.58),rgba(249,255,248,.24));box-shadow:0 12px 30px rgba(23,33,61,.07),inset 0 1px 0 rgba(255,255,255,.72)}.about-copy h2,.connect-atlas h2{font-size:52px;line-height:1;letter-spacing:-.055em}.about-copy>p:not(.section-kicker){font-size:15px;line-height:1.7}.section-kicker{font-size:10px}.endpoint-grid a{padding:21px 0}.endpoint-grid strong{font-size:15px}.endpoint-grid span{font-size:11px}}
 
-/* Restore the proven hero geometry; the new wording must not change the photo composition. */
-.hero-copy h1{font-size:clamp(48px,5vw,74px);line-height:.95;letter-spacing:-.055em}
-.hero-copy>p:not(.hero-kicker){font-size:15px;line-height:1.55}
-.portrait-image{object-position:76% 68%;transform:scale(1.08) translateY(-3%);transform-origin:76% 31%}
-@media(max-width:760px){.hero-copy h1{font-size:44px;line-height:.96;letter-spacing:-.045em}.hero-copy>p:not(.hero-kicker){font-size:14px}}
-
-/* Keep the full portrait readable and keep the hero CTA inside the frame. */
-.portrait-image{left:40%;width:60%;object-fit:contain;object-position:right center;transform:none;transform-origin:center center}
-.portrait-image{-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.12) 17%,rgba(0,0,0,.62) 45%,#000 73%,#000 100%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.12) 17%,rgba(0,0,0,.62) 45%,#000 73%,#000 100%)}
-.hero-device:after{content:"";position:absolute;left:37%;top:0;width:24%;height:100%;z-index:4;pointer-events:none;background:linear-gradient(90deg,var(--blue) 0%,rgba(55,75,255,.92) 28%,rgba(55,75,255,.58) 58%,rgba(55,75,255,.12) 86%,transparent 100%)}
-.hero-copy{top:420px}
-@media(max-width:900px){.hero-copy{top:405px}}
-@media(max-width:760px){.hero-copy{top:365px}.portrait-image{left:50%;width:50%;object-fit:contain;object-position:right center}}
-
-/* Final hero cleanup: one controlled dissolve and enough room for the CTA. */
-.atlas-hero{min-height:680px}
-.hero-device:after{display:none}
-.photo-hover-target::before{width:340px;z-index:6;background:linear-gradient(90deg,var(--blue) 0%,var(--blue) 12%,rgba(55,75,255,.96) 35%,rgba(55,75,255,.66) 58%,rgba(55,75,255,.24) 82%,transparent 100%)}
-.photo-hover-target{inset:0 0 0 42%}
-.atlas-hero{min-height:785px}
-.photo-hover-target::before{width:390px;background:linear-gradient(90deg,var(--blue) 0%,var(--blue) 13%,rgba(55,75,255,.98) 34%,rgba(55,75,255,.72) 57%,rgba(55,75,255,.3) 79%,transparent 100%)}
-.photo-hover-target .portrait-image{object-fit:cover;object-position:68% 60%;transform:scale(1.06);transform-origin:68% 60%}
-.hero-label{transform:translateX(-28px)}
-.hero-name,.hero-copy{left:44px}
-.hero-foot{left:44px}
-.hero-label{transform:none}
-.hero-name,.hero-copy{transform:translateY(-25px)}
-.hero-foot{bottom:25px}
-
 /* Navbar-only treatment: a navy glass capsule with individual glass controls. */
 .atlas-nav{position:relative;z-index:20;height:66px;width:min(1380px,calc(100% - 64px));margin:18px auto 0;padding:8px 14px;box-sizing:border-box;border:1px solid rgba(230,243,234,.28);border-bottom:1px solid rgba(230,243,234,.28);border-radius:999px;background:linear-gradient(110deg,rgba(23,33,61,.96),rgba(34,48,86,.86));box-shadow:0 14px 30px rgba(23,33,61,.2),inset 0 1px 0 rgba(255,255,255,.18);backdrop-filter:blur(18px) saturate(135%);-webkit-backdrop-filter:blur(18px) saturate(135%);color:var(--mint)}
 .atlas-logo{height:100%;padding:0 13px;border:1px solid rgba(230,243,234,.16);border-radius:999px;background:rgba(230,243,234,.08);color:var(--mint);transition:background .2s ease,transform .2s ease}
@@ -278,100 +216,6 @@
 @media(max-width:760px){.about-atlas,.connect-atlas{border-radius:22px;background:rgba(249,255,248,.5);box-shadow:0 14px 34px rgba(23,33,61,.08),inset 0 1px 0 rgba(255,255,255,.86)}}
 .device-frame{pointer-events:none}.photo-hover-target{position:absolute;inset:0 0 0 36%;z-index:3;overflow:hidden;pointer-events:auto}.photo-hover-target::before{content:"";position:absolute;inset:0 auto 0 0;z-index:5;width:230px;pointer-events:none;background:linear-gradient(90deg,var(--blue) 0%,rgba(55,75,255,.9) 34%,rgba(55,75,255,.48) 68%,transparent 100%)}.photo-hover-target .portrait-image,.photo-hover-target .childhood-hover-image{left:0;right:0;width:100%}.childhood-hover-image{position:absolute;top:-22%;right:0;bottom:auto;left:0;z-index:4;width:100%;height:144%;object-fit:cover;object-position:35% 2%;opacity:0;transform:none;transform-origin:50% 50%;clip-path:ellipse(118px 150px at var(--hover-x,50%) var(--hover-y,50%));mask-image:radial-gradient(ellipse 118px 150px at var(--hover-x,50%) var(--hover-y,50%),#000 0%,#000 34%,rgba(0,0,0,.74) 61%,rgba(0,0,0,.24) 82%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 118px 150px at var(--hover-x,50%) var(--hover-y,50%),#000 0%,#000 34%,rgba(0,0,0,.74) 61%,rgba(0,0,0,.24) 82%,transparent 100%);mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-size:100% 100%;-webkit-mask-size:100% 100%;transition:opacity .28s ease,clip-path .1s ease,--hover-x .1s ease,--hover-y .1s ease;pointer-events:none;filter:saturate(1.1) contrast(1.16) brightness(1.04)}.photo-hover-target:hover .childhood-hover-image{opacity:1}
 @media(max-width:760px){.atlas-hero{display:block;min-height:900px;padding:42px 24px 20px}.hero-name{left:24px;top:132px;font-size:76px;line-height:.82;letter-spacing:-.012em}.hero-copy{left:24px;top:365px;width:calc(100% - 48px)}.hero-copy h1{font-size:44px;letter-spacing:-.045em}.hero-kicker{font-size:17px}.portrait-image{top:0;left:50%;width:50%;object-position:80% 62%;transform:scale(1.06) translateY(-2%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.72) 46%,#000 72%,#000 100%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.72) 46%,#000 72%,#000 100%)}.device-readout{top:12px;right:10px;bottom:auto;width:128px}.hero-foot{left:24px;right:24px;bottom:7px;margin-top:0;font-size:8px}}
-
-/* Hero artifact finish: a quiet inner frame and instrument rails make the landing panel feel intentional. */
-.atlas-hero:before{content:"";position:absolute;inset:12px;z-index:9;border:1px solid rgba(230,243,234,.2);box-shadow:inset 0 0 0 1px rgba(23,33,61,.12);pointer-events:none}
-.atlas-hero:after{content:"";position:absolute;left:12px;right:12px;top:12px;height:1px;z-index:9;background:linear-gradient(90deg,var(--pollen) 0 14%,rgba(230,243,234,.28) 14% 54%,rgba(255,114,94,.8) 54% 66%,rgba(230,243,234,.16) 66% 100%);opacity:.8;pointer-events:none}
-.hero-label{padding-left:14px}
-.hero-label:before{content:"FIELD NOTE / 001";position:absolute;left:14px;top:-22px;color:rgba(230,243,234,.52);font:600 8px 'IBM Plex Mono',monospace;letter-spacing:1.5px}
-.hero-copy{width:min(46%,540px)}
-.hero-copy h1{max-width:530px}
-.hero-copy:after{content:"/ SYSTEMS · AI · SHIPPING";display:block;margin-top:32px;color:rgba(230,243,234,.45);font:600 9px 'IBM Plex Mono',monospace;letter-spacing:1.35px}
-.hero-device:after{display:block;content:"PORTRAIT / LIVE";position:absolute;right:22px;bottom:17px;z-index:7;color:rgba(230,243,234,.62);font:600 8px 'IBM Plex Mono',monospace;letter-spacing:1.3px;pointer-events:none}
-.hero-foot{border-top:1px solid rgba(230,243,234,.2);padding-top:10px}
-@media(max-width:760px){.atlas-hero:before{inset:9px}.atlas-hero:after{left:9px;right:9px;top:9px}.hero-label{padding-left:0}.hero-label:before{top:-18px;font-size:7px}.hero-copy{width:calc(100% - 48px)}.hero-copy:after{margin-top:23px;font-size:8px}.hero-device:after{right:12px;bottom:12px;font-size:7px}.hero-foot{padding-top:7px}}
-
-/* New hero composition: a dark instrument board with a cobalt identity slab and framed portrait window. */
-.atlas-hero{background:linear-gradient(118deg,#17213d 0%,#17213d 51%,#26365f 51%,#26365f 100%);border-color:rgba(230,243,234,.3);box-shadow:14px 14px 0 #0f172d}
-.atlas-hero:before{inset:14px;border-color:rgba(230,243,234,.26);box-shadow:inset 0 0 0 1px rgba(23,33,61,.34)}
-.atlas-hero:after{left:14px;right:14px;top:14px;background:linear-gradient(90deg,var(--pollen) 0 16%,rgba(230,243,234,.24) 16% 52%,var(--coral) 52% 65%,rgba(230,243,234,.15) 65% 100%)}
-.hero-device{inset:30px 30px 30px 30px;z-index:2}
-.device-frame{border:1px solid rgba(230,243,234,.28);border-radius:18px;background:transparent;box-shadow:0 0 0 1px rgba(15,23,45,.42),12px 12px 0 rgba(15,23,45,.78)}
-.device-frame:before{display:block;content:"";position:absolute;inset:0 auto 0 0;width:48%;z-index:0;background:var(--blue);opacity:.98}
-.photo-hover-target{inset:0 0 0 44%;border-left:1px solid rgba(230,243,234,.16);border-radius:0 17px 17px 0}
-.photo-hover-target::before{width:220px;background:linear-gradient(90deg,var(--blue) 0%,rgba(55,75,255,.98) 22%,rgba(55,75,255,.72) 52%,rgba(55,75,255,.18) 86%,transparent 100%)}
-.photo-hover-target .portrait-image{object-position:68% 60%;transform:scale(1.1);transform-origin:68% 60%}
-.device-corners{z-index:8;opacity:.9}
-.device-readout{top:22px;right:22px}
-.hero-label{z-index:10;color:var(--pollen)}
-.hero-name{left:62px;top:145px;z-index:10;color:var(--pollen);font-size:clamp(104px,9vw,150px);letter-spacing:-.035em}
-.hero-name span{color:var(--mint)}
-.hero-copy{left:62px;top:480px;z-index:10;width:min(39%,470px)}
-.hero-copy h1{font-size:clamp(48px,5.1vw,76px);line-height:.96;letter-spacing:-.065em}
-.hero-copy>p:not(.hero-kicker){max-width:360px;color:rgba(230,243,234,.72)}
-.hero-copy:after{color:rgba(230,243,234,.48)}
-.hero-foot{left:62px;right:62px;bottom:22px;z-index:11;border-color:rgba(230,243,234,.24)}
-.hero-device:after{right:26px;bottom:22px}
-@media(max-width:900px) and (min-width:761px){.hero-device{inset:24px}.hero-name{left:44px;font-size:clamp(94px,9vw,126px)}.hero-copy{left:44px;top:430px;width:42%}.hero-foot{left:44px;right:44px}}
-@media(max-width:760px){.atlas-hero{background:linear-gradient(160deg,#17213d 0%,#17213d 54%,#26365f 54%,#26365f 100%);box-shadow:7px 7px 0 #0f172d}.atlas-hero:before{inset:9px}.atlas-hero:after{left:9px;right:9px;top:9px}.hero-device{inset:430px 18px 62px 18px}.device-frame{border-radius:15px;box-shadow:6px 6px 0 rgba(15,23,45,.82)}.device-frame:before{width:50%}.photo-hover-target{inset:0 0 0 48%;border-radius:0 14px 14px 0}.photo-hover-target::before{width:150px}.hero-label{left:24px;top:0;color:var(--pollen)}.hero-name{left:24px;top:125px;font-size:76px}.hero-copy{left:24px;top:365px;width:calc(100% - 48px)}.hero-copy h1{font-size:44px}.hero-foot{left:24px;right:24px;bottom:10px}.device-readout{top:12px;right:12px;width:128px}.hero-device:after{right:14px;bottom:14px;font-size:7px}}
-
-/* Final hero direction: an asymmetric portfolio-cover collage, not a dashboard shell. */
-.atlas-hero{background:var(--mint);border:2px solid var(--navy);box-shadow:12px 12px 0 var(--navy);color:var(--navy)}
-.atlas-hero:before{inset:14px;border:1px solid rgba(23,33,61,.32);box-shadow:none}
-.atlas-hero:after{left:14px;right:14px;top:14px;height:2px;background:linear-gradient(90deg,var(--navy) 0 21%,transparent 21% 48%,var(--coral) 48% 61%,transparent 61% 100%);opacity:.7}
-.hero-device{inset:28px 28px 28px 28px}
-.hero-device:before{display:block;content:"";position:absolute;inset:10px -13px -12px 12px;z-index:-1;background:var(--coral);transform:rotate(-1.8deg);opacity:.92}
-.device-frame{border:1px solid var(--navy);border-radius:0;background:var(--blue);box-shadow:none}
-.device-frame:before{width:53%;background:var(--blue)}
-.photo-hover-target{inset:0 0 0 45%;border-left:0;border-radius:0}
-.photo-hover-target::before{width:260px;background:linear-gradient(90deg,var(--blue) 0%,rgba(55,75,255,.98) 20%,rgba(55,75,255,.75) 50%,rgba(55,75,255,.2) 84%,transparent 100%)}
-.device-readout{top:20px;right:20px;border:1px solid var(--navy);box-shadow:5px 5px 0 var(--pollen)}
-.hero-label{left:62px;color:var(--navy)}
-.hero-label:before{color:rgba(23,33,61,.54)}
-.hero-name{left:62px;top:145px;color:var(--pollen);font-size:clamp(104px,9vw,150px)}
-.hero-name span{color:var(--mint)}
-.hero-copy{left:62px;top:480px}
-.hero-copy h1{color:var(--mint)}
-.hero-copy>p:not(.hero-kicker){color:rgba(230,243,234,.82)}
-.hero-foot{left:62px;right:62px;bottom:22px;border-color:rgba(23,33,61,.34);color:rgba(23,33,61,.72)}
-.hero-device:after{right:24px;bottom:20px;color:rgba(230,243,234,.72)}
-@media(max-width:900px) and (min-width:761px){.hero-device{inset:24px}.hero-label{left:44px}.hero-name{left:44px}.hero-copy{left:44px}.hero-foot{left:44px;right:44px}}
-@media(max-width:760px){.atlas-hero{background:var(--mint);box-shadow:7px 7px 0 var(--navy)}.atlas-hero:before{inset:9px}.atlas-hero:after{left:9px;right:9px;top:9px}.hero-device{inset:430px 18px 62px 18px}.hero-device:before{inset:8px -7px -7px 7px}.device-frame{border-radius:0}.photo-hover-target{inset:0 0 0 48%;border-radius:0}.photo-hover-target::before{width:155px}.hero-label{left:24px;color:var(--navy)}.hero-name{left:24px;top:125px}.hero-copy{left:24px;top:365px}.hero-foot{left:24px;right:24px;bottom:10px;color:rgba(23,33,61,.72)}}
-
-/* Final cleanup: remove flare and rails, then restore clear spacing and a real CTA. */
-.atlas-hero:before,.atlas-hero:after{display:none}
-.photo-hover-target::before{width:210px;background:linear-gradient(90deg,rgba(13,11,16,.78) 0%,rgba(13,11,16,.5) 38%,rgba(13,11,16,.16) 72%,transparent 100%)}
-.photo-hover-target .portrait-image{transform:scale(1.18);transform-origin:68% 62%;object-position:68% 62%}
-.hero-copy:after{display:none}
-.hero-device:after{display:none}
-.hero-copy>a{display:inline-flex;align-items:center;gap:18px;margin-top:30px;padding:13px 17px;border:1px solid var(--coral);border-radius:999px;background:var(--coral);color:#0d0b10;box-shadow:4px 4px 0 var(--pollen);font:700 10px 'IBM Plex Mono',monospace;letter-spacing:1.1px;transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease}
-.hero-copy>a:hover{background:var(--pollen);color:#0d0b10;border-color:var(--pollen);box-shadow:4px 4px 0 var(--coral);transform:translate(2px,2px)}
-.hero-copy>a b{color:#0d0b10;font-size:17px}
-.hero-foot{border-top:0;padding-top:0;bottom:22px;color:rgba(230,243,234,.48)}
-@media(max-width:760px){.photo-hover-target::before{width:125px}.photo-hover-target .portrait-image{transform:scale(1.14);transform-origin:68% 62%;object-position:68% 62%}.hero-copy>a{margin-top:24px;padding:12px 15px}.hero-foot{bottom:10px;padding-top:0}}
-
-/* Hero refinement: confident copy, precise portrait crop, and a quiet status pill. */
-.hero-copy h1{max-width:640px;font-size:clamp(48px,5.15vw,76px);line-height:.98;letter-spacing:-.055em}
-.hero-copy h1 em{display:inline-block}
-.hero-copy>p:not(.hero-kicker){max-width:470px}
-.photo-hover-target::before{width:190px;background:linear-gradient(90deg,rgba(13,11,16,.82) 0%,rgba(13,11,16,.58) 34%,rgba(13,11,16,.2) 72%,transparent 100%)}
-.photo-hover-target .portrait-image{object-fit:cover;object-position:74% 68%;transform:scale(1.18);transform-origin:74% 62%;filter:saturate(.94) contrast(1.05)}
-.device-readout{top:18px;right:22px;bottom:auto;width:auto;min-width:236px;display:flex;align-items:center;gap:14px;padding:9px 14px;border:1px solid rgba(230,243,234,.25);border-radius:999px;background:rgba(13,11,16,.72);box-shadow:none;color:rgba(230,243,234,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.device-readout small,.device-readout strong,.device-readout span{white-space:nowrap}
-.device-readout strong,.device-readout span{color:var(--mint)}
-.device-readout span i{background:var(--coral);box-shadow:0 0 0 3px rgba(255,114,94,.14)}
-.hero-foot{bottom:22px}
-@media(max-width:760px){.hero-copy h1{font-size:44px;line-height:.98}.hero-copy>p:not(.hero-kicker){max-width:330px}.photo-hover-target .portrait-image{object-position:76% 66%;transform:scale(1.14);transform-origin:76% 62%}.device-readout{top:12px;right:12px;min-width:0;width:auto;gap:8px;padding:8px 10px;font-size:8px}.device-readout small{display:none}.hero-foot{bottom:10px}}
-
-/* One confident editorial statement; the name is no longer a separate logo block. */
-.hero-name{display:none}
-.hero-label{color:rgba(230,243,234,.68);font-size:10px;line-height:1.65;letter-spacing:1.7px}
-.hero-copy{top:300px;left:5%;width:min(51%,650px)}
-.hero-copy h1{max-width:700px;font:400 clamp(48px,5.15vw,76px)/.96 'DM Serif Display',Georgia,serif;letter-spacing:-.04em;margin:0 0 27px;color:var(--mint)}
-.hero-copy h1 em{color:var(--coral);font-style:italic}
-.hero-copy>p:not(.hero-kicker){max-width:500px;font-size:15px;line-height:1.65}
-@media(max-width:900px) and (min-width:761px){.hero-copy{top:285px;left:42px;width:48%}}
-@media(max-width:760px){.hero-label{font-size:8px;letter-spacing:1.2px}.hero-copy{top:135px;left:24px;width:calc(100% - 48px)}.hero-copy h1{font-size:43px;line-height:.98;margin-bottom:21px}.hero-copy>p:not(.hero-kicker){font-size:14px}.hero-device{inset:430px 18px 62px 18px}}
 
 /* About + Connect: compact diagnostic consoles that share the navy glass language of the navbar. */
 .about-atlas,.connect-atlas{box-sizing:border-box;width:min(1280px,calc(100% - 80px));border-radius:24px;border:1px solid rgba(230,243,234,.24);background:linear-gradient(120deg,rgba(23,33,61,.98),rgba(38,54,96,.9));box-shadow:12px 12px 0 var(--navy),inset 0 1px 0 rgba(255,255,255,.18);color:var(--mint);backdrop-filter:blur(18px) saturate(135%);-webkit-backdrop-filter:blur(18px) saturate(135%)}
@@ -558,25 +402,6 @@
 }
 .knowledge-crosshair:before { inset: 18% 26%; transform: rotate(19deg); }
 .knowledge-crosshair:after { inset: 30% 12%; transform: rotate(-23deg); border-color: rgba(255,110,95,.16); }
-
-/* Slow orbital motion: the pins behave like a small solar system around the brain. */
-@keyframes orbit-cpp { 0%,100% { transform: rotate(-4deg) translate(0,0); } 25% { transform: rotate(3deg) translate(615px,35px); } 50% { transform: rotate(5deg) translate(640px,355px); } 75% { transform: rotate(-2deg) translate(40px,390px); } }
-@keyframes orbit-vibe { 0%,100% { transform: rotate(3deg) translate(0,0); } 25% { transform: rotate(-2deg) translate(-105px,350px); } 50% { transform: rotate(-4deg) translate(-625px,365px); } 75% { transform: rotate(4deg) translate(-645px,20px); } }
-@keyframes orbit-badminton { 0%,100% { transform: rotate(4deg) translate(0,0); } 25% { transform: rotate(-3deg) translate(70px,-205px); } 50% { transform: rotate(-5deg) translate(665px,-175px); } 75% { transform: rotate(2deg) translate(675px,85px); } }
-@keyframes orbit-music { 0%,100% { transform: rotate(-3deg) translate(0,0); } 25% { transform: rotate(3deg) translate(-20px,240px); } 50% { transform: rotate(5deg) translate(-630px,255px); } 75% { transform: rotate(-2deg) translate(-665px,-45px); } }
-@keyframes orbit-auth { 0%,100% { transform: rotate(2deg) translate(0,0); } 25% { transform: rotate(-3deg) translate(360px,-5px); } 50% { transform: rotate(-5deg) translate(660px,-350px); } 75% { transform: rotate(3deg) translate(25px,-390px); } }
-@keyframes orbit-prompt { 0%,100% { transform: rotate(-3deg) translate(0,0); } 25% { transform: rotate(3deg) translate(-15px,-385px); } 50% { transform: rotate(5deg) translate(-650px,-370px); } 75% { transform: rotate(-2deg) translate(-665px,-20px); } }
-@keyframes orbit-gaming { 0%,100% { transform: rotate(2deg) translate(0,0); } 25% { transform: rotate(-3deg) translate(310px,-15px); } 50% { transform: rotate(-5deg) translate(355px,-400px); } 75% { transform: rotate(3deg) translate(-330px,-400px); } }
-.knowledge-pin { will-change: transform; animation-timing-function: linear; animation-iteration-count: infinite; animation-play-state: running; }
-.pin-cpp { animation: orbit-cpp 34s infinite; }
-.pin-vibe { animation: orbit-vibe 36s -10s infinite; }
-.pin-badminton { animation: orbit-badminton 31s -6s infinite; }
-.pin-music { animation: orbit-music 33s -16s infinite; }
-.pin-auth { animation: orbit-auth 35s -22s infinite; }
-.pin-prompt { animation: orbit-prompt 37s -28s infinite; }
-.pin-gaming { animation: orbit-gaming 32s -12s infinite; }
-.knowledge-pin:hover { animation-play-state: paused; }
-@media (max-width: 900px) { .knowledge-pin { animation: none !important; } }
 
 /* True axis orbit: each pin follows the same elliptical path around the brain. */
 @keyframes axis-orbit { from { offset-distance: 0%; } to { offset-distance: 100%; } }
@@ -1324,3 +1149,5 @@
 .photo-hover-target .portrait-image {
   object-position: 80% 62% !important;
 }
+
+
