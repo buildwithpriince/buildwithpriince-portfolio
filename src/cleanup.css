@@ -1174,3 +1174,29 @@
     font-size: 8px;
   }
 }
+
+.hero-copy {
+  overflow: visible !important;
+}
+
+.hero-copy > a {
+  position: relative;
+  z-index: 10;
+  display: inline-flex !important;
+  width: max-content;
+  white-space: nowrap;
+}
+
+.hero-copy::after {
+  display: block;
+  position: static;
+  margin-top: 24px;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .hero-copy::after {
+    margin-top: 18px;
+    white-space: normal;
+  }
+}
