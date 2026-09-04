@@ -1320,6 +1320,7 @@
     );
   }
 }
+
 .device-scan {
   display: none !important;
   visibility: hidden !important;
