@@ -1320,9 +1320,12 @@
     );
   }
 }
-.device-scan,
-.device-frame::after {
+.device-scan {
   display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
   animation: none !important;
-  opacity: 0 !important;
 }
