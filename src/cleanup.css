@@ -1320,9 +1320,3 @@
     );
   }
 }
-
-.device-scan {
-  display: none !important;
-  animation: none !important;
-  opacity: 0 !important;
-}
