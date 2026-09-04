@@ -1150,4 +1150,27 @@
   object-position: 80% 62% !important;
 }
 
+.device-readout {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  width: auto !important;
+  min-width: 0 !important;
+  white-space: nowrap;
+}
 
+.device-readout small,
+.device-readout strong,
+.device-readout span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .device-readout {
+    gap: 8px;
+    font-size: 8px;
+  }
+}
