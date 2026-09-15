@@ -1,0 +1,122 @@
+/*
+ * Token layer (SPEC §4, build step 1).
+ *
+ * The only place a colour, size, or space value is written as a literal.
+ * Everything downstream references these custom properties. No component
+ * stylesheet should contain a hex, px size, or rem spacing value of its own.
+ */
+
+:root {
+  /* ------------------------------------------------------------------
+   * Palette — Indian textile dye. Five values, and it stays at five.
+   * Contrast against --ink (WCAG 2.x):
+   *   cream    16.24:1   any text
+   *   marigold  9.03:1   any text
+   *   madder    3.35:1   FAILS AA for text under 24px. Status fills and
+   *                      indicators only; put cream text on a madder fill
+   *                      (4.85:1) rather than madder text on ink.
+   *   indigo    1.96:1   surfaces only, never text or a lone boundary.
+   *                      cream on indigo 8.28:1, marigold on indigo 4.60:1.
+   * ------------------------------------------------------------------ */
+  --ink: #0f0b0a;
+  --cream: #f2e9d8;
+  --marigold: #e8a317;
+  --indigo: #2b3a8f;
+  --madder: #c1272d;
+
+  /* ------------------------------------------------------------------
+   * Semantic colour. Derived values are cream at reduced alpha — no new
+   * hex. Ratios below are measured blended over --ink; over --indigo
+   * they are lower, so re-check before using muted text on indigo.
+   * ------------------------------------------------------------------ */
+  --color-ground: var(--ink);
+  --color-surface: var(--indigo);
+  --color-text: var(--cream);
+  --color-text-muted: color-mix(in srgb, var(--cream) 64%, transparent); /* 6.95:1 */
+  --color-text-faint: color-mix(in srgb, var(--cream) 56%, transparent); /* 5.53:1 — floor for text */
+  --color-rule: color-mix(in srgb, var(--cream) 16%, transparent); /* decorative dividers */
+  --color-rule-strong: color-mix(in srgb, var(--cream) 40%, transparent); /* 3.34:1 — boundaries that carry meaning */
+  --color-accent: var(--marigold); /* the name, key emphasis; small deliberate hits */
+  --color-status: var(--madder); /* LIVE, stamps, flags — nowhere else */
+  --color-focus: var(--marigold);
+
+  --focus-width: 2px;
+  --focus-offset: 3px;
+
+  /* ------------------------------------------------------------------
+   * Faces. One job each.
+   * ------------------------------------------------------------------ */
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas,
+    'Liberation Mono', monospace; /* structure and display */
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Georgia,
+    serif; /* italic grounding line inside statements, nowhere else */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+
+  /* ------------------------------------------------------------------
+   * Type scale — fluid modular.
+   *   360px viewport:  15px base, ratio 1.125 (major second)
+   *   1440px viewport: 16px base, ratio 1.25  (major third)
+   * Sizes interpolate linearly between. The ratio widens with the viewport
+   * because mono is wide (0.6em per glyph): at the top step a phone fits
+   * ~14 characters per line and a desktop ~22, which keeps statements
+   * setting as lines rather than stacks of single words.
+   *
+   * --step--1 is the floor. It is held flat at 13px — the ratio would put
+   * it at 12.8–13.3px, and uppercase mono labels below that stop reading.
+   * Nothing on the site is set smaller.
+   *
+   * Role guide (not binding until step 2):
+   *   -1  labels, metadata, FILE numbers, status
+   *    0  body, record fields
+   *   1–2 record titles, subject copy
+   *   3–5 section headings
+   *   6–8 statements, display mono
+   * ------------------------------------------------------------------ */
+  --step--1: 0.8125rem; /* 13px */
+  --step-0: clamp(0.9375rem, 0.9167rem + 0.0926vw, 1rem); /* 15.0 → 16.0px */
+  --step-1: clamp(1.0547rem, 0.9896rem + 0.2894vw, 1.25rem); /* 16.9 → 20.0px */
+  --step-2: clamp(1.1865rem, 1.0612rem + 0.557vw, 1.5625rem); /* 19.0 → 25.0px */
+  --step-3: clamp(1.3348rem, 1.1287rem + 0.916vw, 1.9531rem); /* 21.4 → 31.3px */
+  --step-4: clamp(1.5017rem, 1.1885rem + 1.3922vw, 2.4414rem); /* 24.0 → 39.1px */
+  --step-5: clamp(1.6894rem, 1.2353rem + 2.0183vw, 3.0518rem); /* 27.0 → 48.8px */
+  --step-6: clamp(1.9006rem, 1.2625rem + 2.8357vw, 3.8147rem); /* 30.4 → 61.0px */
+  --step-7: clamp(2.1382rem, 1.2614rem + 3.8966vw, 4.7684rem); /* 34.2 → 76.3px */
+  --step-8: clamp(2.4054rem, 1.2204rem + 5.2667vw, 5.9605rem); /* 38.5 → 95.4px */
+
+  /* Leading. Mono body needs more air than proportional text. */
+  --leading-display: 1;
+  --leading-serif: 1.05; /* statement grounding line */
+  --leading-heading: 1.2;
+  --leading-body: 1.6;
+
+  /* Tracking. Mono at display size looks gappy without pulling in;
+     uppercase labels at the floor size need opening up. */
+  --tracking-display: -0.03em;
+  --tracking-normal: 0;
+  --tracking-label: 0.08em;
+
+  /* ------------------------------------------------------------------
+   * Space scale. Small steps are fixed (they align controls and rules);
+   * larger steps grow with the viewport so section rhythm scales without
+   * breakpoint overrides. Same 360 → 1440px interpolation as type.
+   * ------------------------------------------------------------------ */
+  --space-3xs: 0.25rem; /* 4px */
+  --space-2xs: 0.5rem; /* 8px */
+  --space-xs: 0.75rem; /* 12px */
+  --space-s: 1rem; /* 16px */
+  --space-m: clamp(1.25rem, 1.1667rem + 0.3704vw, 1.5rem); /* 20 → 24px */
+  --space-l: clamp(1.5rem, 1.3333rem + 0.7407vw, 2rem); /* 24 → 32px */
+  --space-xl: clamp(2rem, 1.6667rem + 1.4815vw, 3rem); /* 32 → 48px */
+  --space-2xl: clamp(2.5rem, 2rem + 2.2222vw, 4rem); /* 40 → 64px */
+  --space-3xl: clamp(3.5rem, 2.6667rem + 3.7037vw, 6rem); /* 56 → 96px */
+  --space-4xl: clamp(4.5rem, 3.3333rem + 5.1852vw, 8rem); /* 72 → 128px */
+
+  /* ------------------------------------------------------------------
+   * Layout
+   * ------------------------------------------------------------------ */
+  --gutter: clamp(1rem, 0rem + 4.4444vw, 4rem); /* 16 → 64px page side padding */
+  --measure: 72ch; /* body line length. In mono, ch is exact: 72 characters. */
+  --rule-width: 1px;
+}

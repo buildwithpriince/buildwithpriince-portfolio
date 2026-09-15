@@ -1,0 +1,37 @@
+/*
+ * Self-hosted faces (SPEC §4, §10). Latin subset only, woff2 only.
+ * Source: @fontsource/ibm-plex-mono@5.3.0, @fontsource/instrument-serif@5.3.0.
+ * Licences: ../assets/fonts/OFL-*.txt
+ *
+ * Only the cuts the site uses ship. Adding a weight or style here is a
+ * design decision, not a convenience — check SPEC §4 first.
+ *
+ * The handwriting face has no @font-face on purpose. The name ships as SVG
+ * paths converted from that face (§6), so the font file is a build-time
+ * input and never needs to load in the browser.
+ */
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+}
+
+/* Italic only — the serif exists solely as the grounding line in statements. */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/instrument-serif-latin-400-italic.woff2') format('woff2');
+}
