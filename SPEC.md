@@ -1,7 +1,7 @@
 # Portfolio Rebuild — Build Spec
 
 **Repo:** `buildwithpriince/buildwithpriince-portfolio`
-**Branch:** `rebuild/archive`
+**Branch:** `rebuild`
 **Stack:** Vite + React + TypeScript (keep), Vercel (keep)
 **Status:** design settled, content partially settled, no code written
 
