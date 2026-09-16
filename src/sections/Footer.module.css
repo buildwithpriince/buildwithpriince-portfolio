@@ -1,0 +1,12 @@
+.footer {
+  padding-block: var(--space-xl) var(--space-2xl);
+  padding-inline: var(--gutter);
+  border-block-start: var(--rule-width) solid var(--color-rule);
+}
+
+.mark {
+  margin: 0;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  color: var(--color-text-faint);
+}

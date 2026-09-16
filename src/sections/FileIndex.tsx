@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FileOpen } from '../components/FileOpen'
+import { Section } from '../components/Section'
 import { Value } from '../components/Value'
 import { fileNumber, files, type FileRecord } from '../content/files'
 import { isTodo, type Field } from '../content/todo'
@@ -27,9 +28,7 @@ export function FileIndex() {
   const preview = previewIndex === -1 ? null : files[previewIndex]
 
   return (
-    <section id="index" className={s.index}>
-      <h2 className={s.heading}>Index</h2>
-
+    <Section id="index" title="Index">
       <div className={s.layout}>
         <ol
           className={s.rows}
@@ -80,7 +79,7 @@ export function FileIndex() {
       </div>
 
       <FileOpen slug={slug} onClose={close} />
-    </section>
+    </Section>
   )
 }
 

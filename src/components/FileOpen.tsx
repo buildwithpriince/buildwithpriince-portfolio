@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { LinkValue, Value } from './Value'
+import { Record, RecordField } from './Record'
+import { Value } from './Value'
 import { fileNumber, files, type FileRecord } from '../content/files'
 import s from './FileOpen.module.css'
 
@@ -80,7 +81,9 @@ export function FileOpen({ slug, onClose }: Props) {
             <Value field={shown.file.description} />
           </p>
 
-          <Record file={shown.file} />
+          <div className={s.record}>
+            <FullRecord file={shown.file} />
+          </div>
         </div>
       )}
     </dialog>
@@ -90,37 +93,20 @@ export function FileOpen({ slug, onClose }: Props) {
 const DEFAULT_TITLE = 'Prince Agrawal — Systems Builder'
 
 /* The full record (§7). Every field, in one order, for every file. */
-function Record({ file }: { file: FileRecord }) {
+function FullRecord({ file }: { file: FileRecord }) {
   return (
-    <dl className={s.record}>
-      <Row label="Year" field={file.year} />
-      <Row label="Domain" field={file.domain} />
-      <Row label="Status" field={file.status} />
-      <Row label="Stack" field={file.stack} />
-      <Row label="Specified" field={file.attribution.specified} />
-      <Row label="Implementation" field={file.attribution.implementation} />
-      <Row label="Duration" field={file.attribution.duration} />
-      {file.commits && <Row label="Commits" field={file.commits} />}
-      {file.outcome && <Row label="Outcome" field={file.outcome} />}
-      <Row label="Repo" field={file.repo} link />
-      <Row label="Live" field={file.live} link />
-    </dl>
-  )
-}
-
-function Row({
-  label,
-  field,
-  link = false,
-}: {
-  label: string
-  field: Parameters<typeof Value>[0]['field']
-  link?: boolean
-}) {
-  return (
-    <div className={s.field}>
-      <dt className={s.label}>{label}</dt>
-      <dd className={s.value}>{link ? <LinkValue field={field} /> : <Value field={field} />}</dd>
-    </div>
+    <Record>
+      <RecordField label="Year" field={file.year} />
+      <RecordField label="Domain" field={file.domain} />
+      <RecordField label="Status" field={file.status} />
+      <RecordField label="Stack" field={file.stack} />
+      <RecordField label="Specified" field={file.attribution.specified} />
+      <RecordField label="Implementation" field={file.attribution.implementation} />
+      <RecordField label="Duration" field={file.attribution.duration} />
+      {file.commits && <RecordField label="Commits" field={file.commits} />}
+      {file.outcome && <RecordField label="Outcome" field={file.outcome} />}
+      <RecordField label="Repo" field={file.repo} link />
+      <RecordField label="Live" field={file.live} link />
+    </Record>
   )
 }

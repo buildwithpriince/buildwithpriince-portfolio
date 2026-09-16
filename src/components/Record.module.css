@@ -1,0 +1,44 @@
+.record {
+  margin: 0;
+  display: grid;
+  gap: 0;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2xs);
+  padding-block: var(--space-s);
+  border-block-start: var(--rule-width) solid var(--color-rule);
+}
+
+.field:last-child {
+  border-block-end: var(--rule-width) solid var(--color-rule);
+}
+
+/* Label column only once there is room for it to stay a column. */
+@media (min-width: 40rem) {
+  .field {
+    grid-template-columns: 16ch minmax(0, 1fr);
+    gap: var(--space-m);
+    align-items: baseline;
+  }
+}
+
+.label {
+  margin: 0;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.value {
+  margin: 0;
+  max-width: var(--measure);
+  overflow-wrap: anywhere; /* URLs, and the long GlobeTrotter commit note */
+}
+
+.value a {
+  color: var(--color-accent);
+  text-underline-offset: 0.2em;
+}

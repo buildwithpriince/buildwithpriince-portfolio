@@ -122,43 +122,7 @@
   color: var(--color-text-muted);
 }
 
+/* Spacing only — the record's own rules live in Record.module.css. */
 .record {
-  margin: var(--space-2xl) 0 0;
-  display: grid;
-  gap: 0;
-}
-
-.field {
-  display: grid;
-  gap: var(--space-2xs);
-  padding-block: var(--space-s);
-  border-block-start: var(--rule-width) solid var(--color-rule);
-}
-
-/* Label column only once there is room for it to stay a column. */
-@media (min-width: 40rem) {
-  .field {
-    grid-template-columns: 16ch minmax(0, 1fr);
-    gap: var(--space-m);
-    align-items: baseline;
-  }
-}
-
-.label {
-  margin: 0;
-  font-size: var(--step--1);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-text-faint);
-}
-
-.value {
-  margin: 0;
-  max-width: var(--measure);
-  overflow-wrap: anywhere; /* URLs and the long GlobeTrotter commit note */
-}
-
-.value a {
-  color: var(--color-accent);
-  text-underline-offset: 0.2em;
+  margin-block-start: var(--space-2xl);
 }

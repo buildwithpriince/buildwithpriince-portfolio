@@ -1,0 +1,49 @@
+/*
+ * 04 SUBJECT (SPEC §5). Personnel-file layout: a fixed portrait plate beside
+ * a record that takes the remaining width.
+ */
+
+.layout {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 48rem) {
+  .layout {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+}
+
+.plate {
+  margin: 0;
+  max-width: 18rem;
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  /* The plate edge, not a decorative frame — same rule weight as a record boundary. */
+  border: var(--rule-width) solid var(--color-rule-strong);
+  /* Slight desaturation so the photo sits in the palette rather than beside it. */
+  filter: saturate(0.85);
+}
+
+.plateLabel {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.opening {
+  margin: 0 0 var(--space-xl);
+  max-width: var(--measure);
+  font-size: var(--step-1);
+  line-height: var(--leading-body);
+  color: var(--color-text-muted);
+}
