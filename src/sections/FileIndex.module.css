@@ -1,0 +1,233 @@
+/*
+ * 02 INDEX (SPEC §4, §7). Record treatment: structured, mono, bordered,
+ * dense, left-aligned and gridded.
+ *
+ * Column alignment across rows is real grid alignment, not guessed widths —
+ * the list owns the tracks and each row subgrids onto them, so a long TODO
+ * marker widens that column for every row instead of breaking one. This is
+ * the abstraction whose absence produced §11.
+ */
+
+.index {
+  padding-block: var(--space-3xl);
+  padding-inline: var(--gutter);
+}
+
+.heading {
+  margin: 0 0 var(--space-xl);
+  font-size: var(--step--1);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.layout {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+/* ------------------------------------------------------------------
+ * Rows
+ * ------------------------------------------------------------------ */
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  /* Narrow: number + name on one line, the three metadata cells beneath. */
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  border-block-start: var(--rule-width) solid var(--color-rule-strong);
+}
+
+.item {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  border-block-end: var(--rule-width) solid var(--color-rule);
+}
+
+.item:last-child {
+  border-block-end-color: var(--color-rule-strong);
+}
+
+.row {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  column-gap: var(--space-m);
+  row-gap: var(--space-2xs);
+  align-items: baseline;
+  padding-block: var(--space-s);
+  padding-inline: var(--space-2xs);
+  margin-inline: calc(var(--space-2xs) * -1);
+  color: inherit;
+  text-decoration: none;
+  transition: background-color var(--duration-state) var(--ease-state);
+}
+
+.row:hover,
+.row:focus-visible {
+  background: var(--color-wash);
+}
+
+.number {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  transition: color var(--duration-state) var(--ease-state);
+}
+
+.name {
+  grid-column: 2 / -1;
+  grid-row: 1;
+  font-size: var(--step-1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  transition: color var(--duration-state) var(--ease-state);
+}
+
+/* The deliberate marigold hit: the file being pointed at, and nothing else (§4). */
+.row:hover .name,
+.row:focus-visible .name {
+  color: var(--color-accent);
+}
+
+.row:hover .number,
+.row:focus-visible .number {
+  color: var(--color-text-muted);
+}
+
+.year {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.domain {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.statusCell {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.year,
+.domain,
+.statusCell {
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.statusFlag {
+  display: inline-block;
+  padding: var(--space-3xs) var(--space-2xs);
+  background: var(--color-status);
+  color: var(--color-text);
+  letter-spacing: var(--tracking-label);
+}
+
+/* Wide: the §7 row — number, name, year, domain, status, all on one line. */
+@media (min-width: 52rem) {
+  .rows {
+    grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+  }
+
+  .name {
+    grid-column: 2;
+  }
+
+  .year {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .domain {
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  .statusCell {
+    grid-column: 5;
+    grid-row: 1;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Preview — pointer only, and only where there is a column spare for it.
+ * ------------------------------------------------------------------ */
+
+.preview {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .preview {
+    display: block;
+    position: sticky;
+    top: var(--space-2xl);
+    min-height: var(--space-4xl);
+    padding-inline-start: var(--space-l);
+    border-inline-start: var(--rule-width) solid var(--color-rule);
+  }
+}
+
+.previewInner {
+  animation: preview-in var(--duration-fade) var(--ease-state);
+}
+
+@keyframes preview-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.previewNumber {
+  margin: 0;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.previewDescription {
+  margin: var(--space-s) 0 0;
+  color: var(--color-text-muted);
+}
+
+.previewRecord {
+  margin: var(--space-l) 0 0;
+  display: grid;
+  gap: var(--space-s);
+}
+
+.previewField {
+  display: grid;
+  gap: var(--space-3xs);
+}
+
+.previewLabel {
+  margin: 0;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.previewValue {
+  margin: 0;
+  font-size: var(--step--1);
+  line-height: var(--leading-body);
+}

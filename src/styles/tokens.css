@@ -39,6 +39,7 @@
   --color-accent: var(--marigold); /* the name, key emphasis; small deliberate hits */
   --color-status: var(--madder); /* LIVE, stamps, flags — nowhere else */
   --color-focus: var(--marigold);
+  --color-wash: color-mix(in srgb, var(--cream) 6%, transparent); /* hovered row fill — too faint to read as a surface */
 
   --focus-width: 2px;
   --focus-offset: 3px;
@@ -119,4 +120,34 @@
   --gutter: clamp(1rem, 0rem + 4.4444vw, 4rem); /* 16 → 64px page side padding */
   --measure: 72ch; /* body line length. In mono, ch is exact: 72 characters. */
   --rule-width: 1px;
+
+  /* ------------------------------------------------------------------
+   * Motion. One vocabulary, so the file-open (§7) and the entry cover-lift
+   * (§6) read as the same gesture at two scales. Step 4 reuses these rather
+   * than inventing its own timing — that is the whole point of naming them.
+   *
+   * --duration-lift is the panel travelling; --duration-fade is anything
+   * that only changes opacity, which needs to be quicker or it reads as lag.
+   * ------------------------------------------------------------------ */
+  --ease-lift: cubic-bezier(0.22, 1, 0.36, 1); /* decelerating — a cover rising, not a bounce */
+  --ease-state: cubic-bezier(0.4, 0, 0.2, 1); /* hover and focus changes */
+  --duration-lift: 420ms;
+  --duration-fade: 180ms;
+  --duration-state: 120ms;
+  --lift-distance: 2rem;
+}
+
+/*
+ * Reduced motion (SPEC §6, §10). Zeroing the tokens disables every
+ * transition built on them at once, so a new component cannot forget to
+ * honour it. Durations go to 0.01ms rather than 0 so transitionend still
+ * fires and nothing waits forever on a listener.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-lift: 0.01ms;
+    --duration-fade: 0.01ms;
+    --duration-state: 0.01ms;
+    --lift-distance: 0rem;
+  }
 }

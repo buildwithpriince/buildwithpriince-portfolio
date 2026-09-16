@@ -1,0 +1,58 @@
+/*
+ * Base layer (SPEC §4, §10, §13).
+ *
+ * The minimum needed for the index to be legible: the dark ground, the mono
+ * face, and a visible focus ring. It deliberately does NOT style sections
+ * 01 and 04–07 — those stay unstyled until their own step. If a rule here
+ * only exists to make one section look right, it is in the wrong file.
+ *
+ * Every value is a token. No hex, no raw px, no !important (§11).
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ground);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: var(--step-0);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  font-synthesis-weight: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Visible keyboard focus everywhere (§10). Never remove without replacing. */
+:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+/*
+ * Undecided copy (CLAUDE.md "Copy"). Marked so it cannot pass for finished
+ * text at a glance. Not madder — that is reserved for status (§4) — so the
+ * marker earns its attention through the dashed rule instead of colour.
+ */
+[data-todo] {
+  color: var(--color-text-faint);
+  border-bottom: var(--rule-width) dashed var(--color-rule-strong);
+  font-style: normal;
+}
+
+/* The file-open is full-screen; the page behind it must not scroll under it. */
+body:has(dialog[open]) {
+  overflow: hidden;
+}

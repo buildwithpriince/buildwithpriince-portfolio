@@ -1,96 +1,130 @@
-import { LinkValue, Value } from '../components/Value'
+import { useState } from 'react'
+import { FileOpen } from '../components/FileOpen'
+import { Value } from '../components/Value'
 import { fileNumber, files, type FileRecord } from '../content/files'
+import { isTodo, type Field } from '../content/todo'
+import { filePath, isPlainClick, useFileRoute } from '../lib/fileRoute'
+import s from './FileIndex.module.css'
 
 /*
- * 02 INDEX (SPEC §7). A list, not cards. Rows are real links so they are
- * keyboard reachable (§10). Hover preview and the full-screen file-open are
- * step 3; until then a row jumps to its record below.
+ * 02 INDEX (SPEC §7). A list, not cards — three rows read as intentional
+ * where three cards read as sparse, and twelve rows still work.
+ *
+ * Rows are real anchors to real per-file URLs, so a middle-click opens a tab
+ * and "copy link address" gives something that works. The click handler only
+ * intercepts plain left clicks; every modified click stays the browser's.
  */
 export function FileIndex() {
-  return (
-    <section id="index">
-      <h2>Index</h2>
-      <ol>
-        {files.map((file, index) => (
-          <li key={file.slug}>
-            <a href={`#file-${fileNumber(index)}`}>
-              FILE {fileNumber(index)} · {file.name} · <Value field={file.year} /> ·{' '}
-              <Value field={file.domain} /> · <Value field={file.status} />
-            </a>
-          </li>
-        ))}
-      </ol>
+  const { slug, open, close } = useFileRoute()
 
-      {files.map((file, index) => (
-        <FileRecordView key={file.slug} file={file} number={fileNumber(index)} />
-      ))}
+  /*
+   * Hover and focus feed the same preview, so the keyboard sees what the
+   * pointer sees. Cleared when the pointer leaves the list rather than each
+   * row, otherwise it flickers on the gaps between rows.
+   */
+  const [previewSlug, setPreviewSlug] = useState<string | null>(null)
+  const previewIndex = files.findIndex((file) => file.slug === previewSlug)
+  const preview = previewIndex === -1 ? null : files[previewIndex]
+
+  return (
+    <section id="index" className={s.index}>
+      <h2 className={s.heading}>Index</h2>
+
+      <div className={s.layout}>
+        <ol
+          className={s.rows}
+          onMouseLeave={() => setPreviewSlug(null)}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) setPreviewSlug(null)
+          }}
+        >
+          {files.map((file, index) => (
+            <li key={file.slug} className={s.item}>
+              <a
+                className={s.row}
+                href={filePath(file.slug)}
+                onClick={(event) => {
+                  if (!isPlainClick(event)) return
+                  event.preventDefault()
+                  open(file.slug)
+                }}
+                onMouseEnter={() => setPreviewSlug(file.slug)}
+                onFocus={() => setPreviewSlug(file.slug)}
+              >
+                <span className={s.number}>File {fileNumber(index)}</span>
+                <span className={s.name}>{file.name}</span>
+                <span className={s.year}>
+                  <Value field={file.year} />
+                </span>
+                <span className={s.domain}>
+                  <Value field={file.domain} />
+                </span>
+                <span className={s.statusCell}>
+                  <Status field={file.status} />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
+
+        {/*
+         * Pointer-only affordance. Reserved so rows never shift under the
+         * cursor as the preview fills — a list that moves while you aim at
+         * it is worse than no preview. Hidden from assistive tech because
+         * every field in it is repeated in full one Enter press away, and an
+         * unannounced region that silently rewrites itself is just noise.
+         */}
+        <div className={s.preview} aria-hidden="true">
+          {preview && <Preview file={preview} number={fileNumber(previewIndex)} />}
+        </div>
+      </div>
+
+      <FileOpen slug={slug} onClose={close} />
     </section>
   )
 }
 
-function FileRecordView({ file, number }: { file: FileRecord; number: string }) {
+/*
+ * What the hover surfaces: duration, attribution and commit share — the
+ * disclosure practice §1 calls the thing that separates this site. Not a
+ * thumbnail. The full record is in the file-open.
+ */
+function Preview({ file, number }: { file: FileRecord; number: string }) {
   return (
-    <article id={`file-${number}`}>
-      <h3>
-        FILE {number} — {file.name}
-      </h3>
-      <p>
+    <div className={s.previewInner}>
+      <p className={s.previewNumber}>
+        File {number} · {file.name}
+      </p>
+      <p className={s.previewDescription}>
         <Value field={file.description} />
       </p>
-      <dl>
-        <dt>Year</dt>
-        <dd>
-          <Value field={file.year} />
-        </dd>
-        <dt>Domain</dt>
-        <dd>
-          <Value field={file.domain} />
-        </dd>
-        <dt>Status</dt>
-        <dd>
-          <Value field={file.status} />
-        </dd>
-        <dt>Stack</dt>
-        <dd>
-          <Value field={file.stack} />
-        </dd>
-        <dt>Specified</dt>
-        <dd>
-          <Value field={file.attribution.specified} />
-        </dd>
-        <dt>Implementation</dt>
-        <dd>
-          <Value field={file.attribution.implementation} />
-        </dd>
-        <dt>Duration</dt>
-        <dd>
-          <Value field={file.attribution.duration} />
-        </dd>
-        {file.commits && (
-          <>
-            <dt>Commits</dt>
-            <dd>
-              <Value field={file.commits} />
-            </dd>
-          </>
-        )}
-        {file.outcome && (
-          <>
-            <dt>Outcome</dt>
-            <dd>
-              <Value field={file.outcome} />
-            </dd>
-          </>
-        )}
-        <dt>Repo</dt>
-        <dd>
-          <LinkValue field={file.repo} />
-        </dd>
-        <dt>Live</dt>
-        <dd>
-          <LinkValue field={file.live} />
-        </dd>
+      <dl className={s.previewRecord}>
+        <PreviewField label="Duration" field={file.attribution.duration} />
+        <PreviewField label="Specified" field={file.attribution.specified} />
+        <PreviewField label="Implementation" field={file.attribution.implementation} />
+        {file.commits && <PreviewField label="Commits" field={file.commits} />}
       </dl>
-    </article>
+    </div>
   )
+}
+
+function PreviewField({ label, field }: { label: string; field: Field }) {
+  return (
+    <div className={s.previewField}>
+      <dt className={s.previewLabel}>{label}</dt>
+      <dd className={s.previewValue}>
+        <Value field={field} />
+      </dd>
+    </div>
+  )
+}
+
+/*
+ * Status is the one place madder appears (§4). It fails AA as text on ink,
+ * so it ships as cream on a madder fill (4.85:1), which is what the token
+ * layer prescribes. An undecided status stays a TODO marker and gets no fill.
+ */
+function Status({ field }: { field: Field }) {
+  if (isTodo(field)) return <Value field={field} />
+  return <span className={s.statusFlag}>{field}</span>
 }

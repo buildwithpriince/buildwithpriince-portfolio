@@ -278,6 +278,38 @@ signature interaction and the most important build item after the tokens.
 An index scales where cards do not: three cards look sparse, three rows look
 intentional, and twelve rows still works.
 
+### Decided: the hover preview carries the disclosure, not a thumbnail
+
+**No screenshots, and no image slot left waiting for them.** Six do not exist,
+CodeAutopsy cannot be captured until the repo transfer clears, and thumbnails of
+AI tools and dashboards read as unreadable dark rectangles at preview size.
+Worse, an image would bury the thing that actually separates this site.
+
+The preview surfaces **duration, attribution and commit share** — the §1
+disclosure practice — in the same visual language as the row. Undecided fields
+render as TODO markers until the §9 copy is written.
+
+The preview is a pointer-and-keyboard affordance shown beside the list, never
+inline, so rows never shift under the cursor as it fills.
+
+### Decided: every file has its own URL
+
+`/file/<slug>` via the History API — no router dependency for six records.
+Required for the §10 Open Graph tags to have anything to point at, and so a
+single file can be linked to directly.
+
+- **The slug is the address, not the FILE number.** Numbers are derived from
+  position, so `/file/003` would silently come to mean a different project the
+  first time the archive gains an entry out of order. A shared link has to
+  survive that; the displayed number does not.
+- A direct link renders the opened file on first paint — never a flash of the
+  index first.
+- Back returns to the index. On a cold landing there is no index entry behind
+  the file, so one is synthesised rather than letting Back leave the site.
+- Closing pops history rather than pushing, so Escape, the close button and Back
+  are the same operation.
+- Deep links need the SPA rewrite in `vercel.json` to survive a refresh.
+
 ### File record fields
 
 Every file carries the same fields. Empty fields are omitted, never filled with

@@ -1,0 +1,164 @@
+/*
+ * The file-open panel (SPEC §7). Record treatment: mono, gridded, dense,
+ * left-aligned (§4).
+ *
+ * The open is one orchestrated moment, not a scattered entrance (§13) — the
+ * panel lifts, everything inside it arrives with it. Nothing here staggers.
+ */
+
+.dialog {
+  /* Full-screen: the browser's dialog centring and size caps all have to go. */
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-ground);
+  color: var(--color-text);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  opacity: 0;
+  translate: 0 var(--lift-distance);
+  transition:
+    opacity var(--duration-fade) var(--ease-state),
+    translate var(--duration-lift) var(--ease-lift),
+    overlay var(--duration-lift) var(--ease-lift) allow-discrete,
+    display var(--duration-lift) var(--ease-lift) allow-discrete;
+}
+
+.dialog[open] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* The entry state, so the first open animates instead of appearing. */
+@starting-style {
+  .dialog[open] {
+    opacity: 0;
+    translate: 0 var(--lift-distance);
+  }
+}
+
+.dialog::backdrop {
+  background: var(--color-ground);
+  opacity: 0;
+  transition:
+    opacity var(--duration-fade) var(--ease-state),
+    overlay var(--duration-lift) var(--ease-lift) allow-discrete,
+    display var(--duration-lift) var(--ease-lift) allow-discrete;
+}
+
+.dialog[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.panel {
+  padding-block: var(--space-xl) var(--space-4xl);
+  padding-inline: var(--gutter);
+}
+
+.panel:focus {
+  outline: none; /* Focus lands here on open to place the reader, not to mark it. */
+}
+
+.bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding-block-end: var(--space-m);
+  border-block-end: var(--rule-width) solid var(--color-rule-strong);
+}
+
+.number {
+  margin: 0;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.close {
+  margin: 0;
+  padding: var(--space-2xs) var(--space-s);
+  border: var(--rule-width) solid var(--color-rule-strong);
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-state) var(--ease-state),
+    border-color var(--duration-state) var(--ease-state);
+}
+
+.close:hover {
+  background: var(--color-wash);
+  border-color: var(--color-text);
+}
+
+.title {
+  margin: var(--space-l) 0 0;
+  font-size: var(--step-5);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+}
+
+.description {
+  margin: var(--space-s) 0 0;
+  max-width: var(--measure);
+  color: var(--color-text-muted);
+}
+
+.record {
+  margin: var(--space-2xl) 0 0;
+  display: grid;
+  gap: 0;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2xs);
+  padding-block: var(--space-s);
+  border-block-start: var(--rule-width) solid var(--color-rule);
+}
+
+/* Label column only once there is room for it to stay a column. */
+@media (min-width: 40rem) {
+  .field {
+    grid-template-columns: 16ch minmax(0, 1fr);
+    gap: var(--space-m);
+    align-items: baseline;
+  }
+}
+
+.label {
+  margin: 0;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.value {
+  margin: 0;
+  max-width: var(--measure);
+  overflow-wrap: anywhere; /* URLs and the long GlobeTrotter commit note */
+}
+
+.value a {
+  color: var(--color-accent);
+  text-underline-offset: 0.2em;
+}
