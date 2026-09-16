@@ -491,16 +491,40 @@ responsive elements, or a second stylesheet that overrides the first.
 Do not reorder. In particular, the dye effect is last among the visual items —
 building it first produces a beautiful hero on top of an unfinished site.
 
-1. **Tokens and type.** Palette, three faces, type scale, spacing scale. Nothing
-   visual. This is the step whose absence caused §11.
-2. **Structure, unstyled.** All six sections, real content, deliberately ugly.
-   Proves the architecture holds before any polish.
-3. **Index and file-open.** The signature interaction. Most of the real work.
-4. **Entry sequence.** Name draw + cover lift.
-5. **Dye simulation.**
-6. **Motion polish, mobile, performance, accessibility pass.**
+Numbered as plain text, not as a markdown list, so that 3b can sit between 3
+and 4 without renumbering everything after it.
+
+- **1. Tokens and type.** Palette, three faces, type scale, spacing scale.
+  Nothing visual. This is the step whose absence caused §11.
+- **2. Structure, unstyled.** All six sections, real content, deliberately ugly.
+  Proves the architecture holds before any polish.
+- **3. Index and file-open.** The signature interaction. Most of the real work.
+- **3b. The remaining records.** Sections 04, 05, 06 and the footer, in the same
+  visual language as the index. Records, not decoration. Added after the
+  original spec — see below.
+- **4. Entry sequence.** Name draw + cover lift.
+- **5. Dye simulation.**
+- **6. Motion polish, mobile, performance, accessibility pass.**
 
 Steps 1–2 are a focused weekend. Step 3 is where the time goes.
+
+### Amendments to this list
+
+Two items were added after the original spec was written. Both are recorded
+here so a later session does not mistake the numbering for drift.
+
+- **Step 3b — the remaining records** (added 2026-09-16). The original list went
+  straight from the index to the entry sequence, leaving sections 04–07 with no
+  step to be built in. That is an omission, not a reordering: 3b is the same
+  class of work as step 3, and the page should be visually complete before
+  anything animates in front of it. The principle this list protects — entry
+  before dye, both after the substance — is untouched. It keeps the name "3b"
+  rather than renumbering, so references to "step 4" in older notes and commits
+  still mean the entry sequence.
+- **Dependency hygiene** (done 2026-09-16, before 3b). Pinning every dependency
+  to an exact version and removing Tailwind are §10 requirements that were
+  attached to no numbered step, which is how they survived steps 1–3. Done as
+  its own commit rather than folded into a styling step.
 
 ---
 
