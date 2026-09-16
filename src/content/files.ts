@@ -105,8 +105,7 @@ export const files: FileRecord[] = [
       implementation: IMPLEMENTATION,
       duration: '1 day',
     },
-    commits:
-      '10 of 37 (team of 4; admin panel, community and backend were built by another contributor)',
+    commits: '10 / 37 — team of 4; admin panel, community and backend by another contributor',
     repo: 'https://github.com/buildwithpriince/odoo-TEAM-MSU-',
     live: todo('live link, if any'),
   },
