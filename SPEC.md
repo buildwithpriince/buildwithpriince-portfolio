@@ -209,6 +209,14 @@ looks uniformly like an archive is monotonous no matter how good the palette is.
 **01 HERO is short.** FILE 001 should be reachable within one screen. The index
 is the argument; nothing should delay it.
 
+**The numbers above are this spec's bookkeeping, not site chrome.** Section
+labels on the page read "SUBJECT", not "04 SUBJECT". §3 allows numbered markers
+only where the content is genuinely a sequence: the file index is, and the
+correspondence endpoints are, so both keep their numbers. The sections are an
+outline, not an ordered thing a reader is meant to count through — numbering
+them on the page would be exactly the decorative numbering §3 rejects. Decided
+during step 3b; do not re-litigate.
+
 **03 STATEMENT** exists for rhythm — a break in density between the index and the
 subject record. It must not become the tagline reintroduced further down the
 page. Keep it factual or observational: a constraint, a working condition, a
@@ -502,16 +510,27 @@ and 4 without renumbering everything after it.
 - **3b. The remaining records.** Sections 04, 05, 06 and the footer, in the same
   visual language as the index. Records, not decoration. Added after the
   original spec — see below.
+- **3c. Hero and statement layout.** 01 HERO's spacing and factual line, and
+  giving 03 STATEMENT real height so the rhythm break exists. No name
+  treatment — that is step 4. Added after the original spec — see below.
 - **4. Entry sequence.** Name draw + cover lift.
 - **5. Dye simulation.**
-- **6. Motion polish, mobile, performance, accessibility pass.**
+- **6. Motion polish, mobile, performance, accessibility pass.** Named items,
+  so none of them goes missing the way these did before:
+  - Convert `public/` images to WebP/AVIF, serve responsive sources,
+    lazy-load below the fold — under 400 KB total (§10).
+  - **Then** build the childhood-photo hover on the Subject portrait (§5). It
+    is gated on the conversion above: built first, it ships the regression the
+    conversion exists to prevent.
+  - ESLint and Prettier configs (§10).
+  - Motion polish, mobile, remaining accessibility pass.
 
 Steps 1–2 are a focused weekend. Step 3 is where the time goes.
 
 ### Amendments to this list
 
-Two items were added after the original spec was written. Both are recorded
-here so a later session does not mistake the numbering for drift.
+Items added after the original spec was written, recorded here so a later
+session does not mistake the numbering for drift.
 
 - **Step 3b — the remaining records** (added 2026-09-16). The original list went
   straight from the index to the entry sequence, leaving sections 04–07 with no
@@ -521,10 +540,20 @@ here so a later session does not mistake the numbering for drift.
   before dye, both after the substance — is untouched. It keeps the name "3b"
   rather than renumbering, so references to "step 4" in older notes and commits
   still mean the entry sequence.
+- **Step 3c — hero and statement layout** (added 2026-09-16). 3b closed the gap
+  for sections 04–07 but left 01 and 03 with no step either. It runs before
+  step 4 because the entry sequence hands off to the hero: if the hero has no
+  layout of its own by then, step 4 will style it implicitly and uncontrolled,
+  which is how the last build drifted.
 - **Dependency hygiene** (done 2026-09-16, before 3b). Pinning every dependency
   to an exact version and removing Tailwind are §10 requirements that were
   attached to no numbered step, which is how they survived steps 1–3. Done as
   its own commit rather than folded into a styling step.
+- **Step 6 broken into named items** (2026-09-16). The childhood-photo hover,
+  the image conversion and the ESLint and Prettier configs were each real
+  requirements attached to no step. "Performance pass" was not specific enough
+  to stop them being forgotten — the dependency hygiene above proves the
+  failure mode. They are now listed individually under step 6.
 
 ---
 
