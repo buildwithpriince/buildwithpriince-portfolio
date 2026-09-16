@@ -1,0 +1,17 @@
+/*
+ * 03 STATEMENT (SPEC §5). Height is the entire content.
+ *
+ * The band exists to break density between the index and the subject record.
+ * With no line in it, the only thing that makes it a rhythm break rather than
+ * a missing section is that it is measurably empty — so the height is set
+ * here, deliberately, not left to collapse to zero.
+ *
+ * It is quiet on purpose: no rule, no mark, no background shift. Any of those
+ * would make it decoration, and §5 asked for breathing room.
+ */
+
+.band {
+  /* Roughly a third of a laptop screen of nothing, between two dense records. */
+  min-height: var(--space-4xl);
+  padding-block: var(--space-3xl);
+}
