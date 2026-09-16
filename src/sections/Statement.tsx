@@ -1,16 +1,12 @@
-import { Value } from '../components/Value'
-import { todo } from '../content/todo'
-
 /*
- * 03 STATEMENT (SPEC §5). A rhythm break, not the tagline moved down the page.
- * A factual line, or an empty band — undecided (§14).
+ * 03 STATEMENT (SPEC §5). A rhythm break between the index and the subject
+ * record. Decided: it ships as an empty band — no line. §5 is explicit that
+ * breathing room beats a manufactured slogan, and nothing honest presented
+ * itself. The band is spatial only, so it carries no text and no accessible
+ * name; step 3 gives it its height.
+ *
+ * Do not fill this later. An empty band is the decision, not a gap.
  */
 export function Statement() {
-  return (
-    <section id="statement" aria-label="Statement">
-      <p>
-        <Value field={todo('one factual line, or ship as an empty band (SPEC §5, §14)')} />
-      </p>
-    </section>
-  )
+  return <section id="statement" />
 }

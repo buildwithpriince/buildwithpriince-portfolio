@@ -215,6 +215,10 @@ page. Keep it factual or observational: a constraint, a working condition, a
 plain sentence. If nothing honest presents itself, use the space as breathing
 room with no text at all. An empty band is better than a manufactured slogan.
 
+**Decided: 03 ships as an empty band.** No line was honest enough to earn the
+space. This is the decision, not an unfilled gap — do not write copy into it
+later without reopening this section.
+
 **04 SUBJECT** is where the childhood-photo hover belongs. It works far better as
 a personnel-file portrait than it does in the hero.
 
@@ -314,7 +318,7 @@ Commit counts are from the repo history and should be verified before publishing
 | CodeAutopsy | **not yet under this account** | — | **10–12 days** | First project. Longest and most iterated on the list — self-directed prompting and revision throughout, no established workflow. Transfer ownership before launch. |
 | Clarity | `clarity` | 13 / 20 | 5 days (Jul 24–29) | Highest ownership share. Finance. |
 | Prism | `TETRA020` | 9 / 14 | 2 days (Aug 1–2) | Outcome: TetraTHON 2026 — 44/160. |
-| GlobeTrotter | `odoo-TEAM-MSU-` | 10 / 37 | 1 day (Aug 22) | **Minority contributor.** Either specify exactly what was owned, or omit. Do not overclaim a repo a reviewer can open. |
+| GlobeTrotter | `odoo-TEAM-MSU-` | 10 / 37 | 1 day (Aug 22) | **Minority share, file stays.** Initial commit and scaffold, before anyone else pushed. Owned: scaffold, authentication, multi-currency and budget, trip context, destination carousel. Share stated openly beside it. Do not claim the admin panel, community page, calendar view or Python backend. |
 | Swasthya-AI | `team-eternals` | 15 / 15 | 2 days (Sep 1–2) | Sole committer. |
 | Agrawal storefront | in progress | — | ongoing | Live commercial site, non-technical users, real consequences. |
 
@@ -498,8 +502,6 @@ one, it has drifted.
 ## 14. Open questions
 
 - Subject (04) opening copy and the file descriptions (§9).
-- Whether section 03 carries a line or ships as breathing room (§5).
-- Whether GlobeTrotter appears at all, given minority contribution (§7).
 - Handwriting face, pending a test with the actual name (§4).
 - **CodeAutopsy repo transfer — blocking for FILE 001.** Collaborator access does
   not surface a repo on a personal profile; only ownership does. Transfer from

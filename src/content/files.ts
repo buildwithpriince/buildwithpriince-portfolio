@@ -86,7 +86,12 @@ export const files: FileRecord[] = [
     live: 'https://tetra-020.vercel.app/',
   },
   {
-    // Open question: whether this file appears at all (SPEC §14).
+    /*
+     * Minority commit share, kept deliberately (SPEC §7). Prince made the
+     * initial commit and scaffolded the app before anyone else pushed. The
+     * share is stated openly beside what was owned; the admin panel,
+     * community page, calendar view and Python backend are not claimed.
+     */
     slug: 'globetrotter',
     name: 'GlobeTrotter',
     year: '2026',
@@ -95,11 +100,13 @@ export const files: FileRecord[] = [
     description: DESCRIPTION,
     stack: todo('stack'),
     attribution: {
-      specified: todo('exactly what was owned, or omit this file — minority contributor (SPEC §7)'),
+      specified:
+        'project scaffold, authentication, multi-currency and budget, trip context, destination carousel',
       implementation: IMPLEMENTATION,
       duration: '1 day',
     },
-    commits: '10 / 37',
+    commits:
+      '10 of 37 (team of 4; admin panel, community and backend were built by another contributor)',
     repo: 'https://github.com/buildwithpriince/odoo-TEAM-MSU-',
     live: todo('live link, if any'),
   },
