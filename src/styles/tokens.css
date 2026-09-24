@@ -135,6 +135,29 @@
   --duration-fade: 180ms;
   --duration-state: 120ms;
   --lift-distance: 2rem;
+
+  /* ------------------------------------------------------------------
+   * Entry sequence (SPEC §6). Offsets from first paint, straight from the
+   * §6 timeline. The cover lift itself is --duration-lift/--ease-lift
+   * above — the same gesture as the file-open, not a timing of its own.
+   * Lift ends at 1800 + 420 = 2220ms, inside the 2.5s ceiling.
+   *
+   * Not zeroed under reduced motion: the entry is not rendered at all
+   * there (lib/entry.ts), which §6 asks for rather than a shortened one.
+   * ------------------------------------------------------------------ */
+  --entry-type-at: 300ms; /* classification line types in */
+  --entry-type-duration: 400ms;
+  --entry-draw-at: 800ms; /* the name draws */
+  --entry-draw-duration: 1000ms;
+  --entry-lift-at: 1800ms; /* the cover lifts; §6 puts the dye here in step 5 */
+
+  /* ------------------------------------------------------------------
+   * Layers. Only the entry needs any: the drawn name sits above the cover
+   * so that it is the hero's name when the cover lifts away (§6).
+   * The file-open is a modal <dialog>, in the top layer, above all of it.
+   * ------------------------------------------------------------------ */
+  --layer-cover: 1;
+  --layer-name: 2;
 }
 
 /*

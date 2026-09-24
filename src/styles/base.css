@@ -41,6 +41,19 @@ img {
   outline-offset: var(--focus-offset);
 }
 
+/* Read by assistive technology, not drawn — for text shown as an image. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /*
  * Undecided copy (CLAUDE.md "Copy"). Marked so it cannot pass for finished
  * text at a glance. Not madder — that is reserved for status (§4) — so the

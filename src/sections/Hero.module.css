@@ -16,17 +16,19 @@
 }
 
 /*
- * The name's footprint, not its treatment. Step 4 replaces this with the drawn
- * SVG — marigold, handwriting face, stroke-animated — and it should land in
- * roughly this space. The face and colour are deliberately left alone here so
- * that step 4 is the only place the name gets a treatment.
+ * The drawn name (components/Name). Its size is set here with a type token;
+ * the SVG scales from the em. Caveat is far narrower than mono, so it takes
+ * the top step to fill roughly the footprint the mono name had at step 7.
+ *
+ * Raised above the entry cover, so the name the cover draws is this one and
+ * nothing moves when the cover lifts (§6).
  */
 .name {
+  position: relative;
+  z-index: var(--layer-name);
   margin: 0;
-  font-size: var(--step-7);
-  font-weight: var(--weight-regular);
+  font-size: var(--step-8);
   line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
 }
 
 .line {

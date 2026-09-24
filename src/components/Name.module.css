@@ -1,0 +1,45 @@
+/*
+ * The drawn name (SPEC §1, §6). Marigold — the accent's reason for existing.
+ *
+ * Sized in ems so the element that holds it sets its scale with a type
+ * token, like any other text. --name-height-em is the path box's height in
+ * ems of the face, written by the generator.
+ */
+
+.name {
+  display: block;
+  block-size: calc(1em * var(--name-height-em));
+  inline-size: auto;
+  max-inline-size: 100%;
+  overflow: visible;
+}
+
+.ink {
+  fill: var(--color-accent);
+}
+
+/*
+ * One pen-down per path, at a constant pen speed: each stroke starts where
+ * the last one ended and lasts in proportion to its length (--start and
+ * --span are fractions of the whole draw). Linear, because a hand keeps its
+ * pace within a stroke; the rhythm comes from the stroke order.
+ *
+ * pathLength="1" makes the dash the whole path. The offset starts just past
+ * 1 so the round cap of an undrawn stroke does not show as a dot.
+ */
+.pen {
+  fill: none;
+  stroke: white; /* mask luminance: white reveals. Not a colour on the page. */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 2;
+  stroke-dashoffset: 1.001;
+  animation: pen calc(var(--entry-draw-duration) * var(--span)) linear
+    calc(var(--entry-draw-at) + var(--entry-draw-duration) * var(--start)) both;
+}
+
+@keyframes pen {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

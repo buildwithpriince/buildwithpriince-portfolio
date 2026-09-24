@@ -1,0 +1,51 @@
+/*
+ * 00 COVER (SPEC §6). A full-screen ink sheet over the page, which is
+ * already rendered beneath it. The drawn name sits one layer above
+ * (--layer-name), so when this lifts the name stays exactly where it is.
+ *
+ * t=0.0  black field, nothing
+ * t=0.3  classification line types in
+ * t=0.8  name draws                      (Name.module.css)
+ * t=1.8  the sheet lifts off the top     (§6 puts the dye bloom here: step 5)
+ *
+ * The lift is the file-open gesture (FileOpen.module.css) at full-screen
+ * scale: the same --ease-lift and --duration-lift, travelling the whole
+ * viewport rather than --lift-distance.
+ */
+
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: var(--layer-cover);
+  padding-block-start: var(--space-s);
+  padding-inline: var(--gutter);
+  background: var(--color-ground);
+  animation: lift var(--duration-lift) var(--ease-lift) var(--entry-lift-at) both;
+}
+
+@keyframes lift {
+  to {
+    translate: 0 -100%;
+  }
+}
+
+/*
+ * Typed, not faded: the line is revealed one character at a time. Mono makes
+ * this exact — every glyph is 1ch, plus the label tracking after it.
+ */
+.classification {
+  margin: 0;
+  inline-size: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  color: var(--color-text-muted);
+  animation: type var(--entry-type-duration) steps(var(--chars), end) var(--entry-type-at) both;
+}
+
+@keyframes type {
+  to {
+    inline-size: calc(var(--chars) * (1ch + var(--tracking-label)));
+  }
+}

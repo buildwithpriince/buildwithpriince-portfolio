@@ -6,9 +6,9 @@
  * Only the cuts the site uses ship. Adding a weight or style here is a
  * design decision, not a convenience — check SPEC §4 first.
  *
- * The handwriting face has no @font-face on purpose. The name ships as SVG
- * paths converted from that face (§6), so the font file is a build-time
- * input and never needs to load in the browser.
+ * The handwriting face (Caveat 400) has no @font-face on purpose. The name
+ * ships as SVG paths converted from that face (§6, scripts/name/), so the
+ * font file is a build-time input and never needs to load in the browser.
  */
 
 @font-face {
