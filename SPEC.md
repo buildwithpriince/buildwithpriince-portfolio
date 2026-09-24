@@ -291,6 +291,25 @@ off the top of the screen with the file-open's motion tokens at full-screen
 scale (§7), finishing at 2.22s. How the dye bloom relates to the lift is for
 step 5 to settle.
 
+**Decided during step 4** (2026-09-24, approved at review):
+
+- **The name is set at `--step-8`.** Caveat is much narrower than mono, so at
+  step 7 it would fill far less than the mono placeholder's footprint. Even
+  step 8 is about 210px wide on a 375px phone and about 510px on desktop. Any
+  larger would need a new step on the type scale, which is a token-layer
+  decision rather than a hero tweak.
+- **A direct `/file/<slug>` link skips the entry and does not set the seen
+  flag.** A deep link paints the opened file on first paint (§7), and that file
+  is a modal dialog in the top layer, which no cover can sit over. The entry
+  belongs to arriving at the archive itself, so the next visit to `/` still
+  gets it.
+- **The seen flag is set when the entry starts, not when it finishes.** A reload
+  halfway through does not replay it. "First visit only" means the first visit,
+  not the first completed one.
+- **The classification line sits at `--space-s` from the top of the cover,**
+  not at the hero's own top padding. On a phone the hero padding is too small
+  to hold the line above the name without the two colliding.
+
 ---
 
 ## 7. The index and the file-open
