@@ -18,6 +18,7 @@ something that holds the visitor rather than just scrolls.
 | SPEC.md | Status | Replaced by |
 | --- | --- | --- |
 | §4 colour — "small deliberate hits" | **overridden** | §3 here: chrome is restrained, the dye is not |
+| §4 colour — marigold, indigo, madder values | **overridden** | §3 here: one value per colour; dyes tuned so ink passes AA |
 | §4 type — handwriting "appears exactly twice" | **overridden** | §3 here: handwriting is the archivist's hand |
 | §8 dye — hero and entry only | **overridden** | §4 here: one living field under the whole site |
 | §8 dye — multiply blending | **overridden — was a bug** | Multiply on a near-black ground is invisible. §4 here |
@@ -108,16 +109,35 @@ stain, cursor, and the ambient field while that file is in focus.
 
 | File | Dye | Hex | Why |
 | --- | --- | --- | --- |
-| CodeAutopsy | Madder | `#D8322B` | the red of a diagnosis |
-| Clarity | Indigo | `#4F5FE0` | lifted from the old `#2B3A8F`, which vanishes as dye on ink |
+| CodeAutopsy | Madder | `#E0443A` | the red of a diagnosis |
+| Clarity | Indigo | `#6573F0` | lifted from the old `#2B3A8F`, which vanishes as dye on ink |
 | Prism | Marigold | `#F2A20C` | the name's colour |
 | GlobeTrotter | Peacock | `#13A89E` | |
 | Swasthya-AI | Mehendi | `#7FA83A` | |
 | Agrawal Storefront | Rani | `#E1307A` | the signature textile pink — the shop's colour |
 
-New files get new dyes from the same textile family. Contrast-check text on
-every dye fill and choose ink or cream per dye; record the choice beside the
-token.
+New files get new dyes from the same textile family.
+
+**Decided: every dye fill carries ink text, and every dye is tuned so ink on it
+passes AA (4.5:1)** (E1 review, 2026-09-24). One rule, not a per-dye choice. As
+first specified, madder (`#D8322B`, ink 4.11) and indigo (`#4F5FE0`, ink 3.77)
+failed with both ink and cream, so both were nudged:
+
+| Dye | Hex | Ink on dye |
+| --- | --- | --- |
+| Madder | `#E0443A` (was `#D8322B`) | 4.72 |
+| Indigo | `#6573F0` (was `#4F5FE0`) | 4.91 |
+| Marigold | `#F2A20C` | 9.28 |
+| Peacock | `#13A89E` | 6.64 |
+| Mehendi | `#7FA83A` | 7.05 |
+| Rani | `#E1307A` | 4.57 |
+
+A new dye must clear 4.5:1 with ink before any file uses it; record its ratio
+beside the token in `styles/tokens.css`.
+
+**Decided: one value per colour.** The name is marigold `#F2A20C`, and status
+(the Live badge) is ink text on madder `#E0443A`. The SPEC.md §4 values
+`#E8A317`, `#C1272D` and `#2B3A8F` are retired.
 
 ### Type — three faces, new roles
 

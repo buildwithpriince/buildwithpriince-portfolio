@@ -56,7 +56,7 @@ img {
 
 /*
  * Undecided copy (CLAUDE.md "Copy"). Marked so it cannot pass for finished
- * text at a glance. Not madder — that is reserved for status (§4) — so the
+ * text at a glance. Not madder — that is reserved for status — so the
  * marker earns its attention through the dashed rule instead of colour.
  */
 [data-todo] {

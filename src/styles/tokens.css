@@ -8,75 +8,57 @@
 
 :root {
   /* ------------------------------------------------------------------
-   * Palette — Indian textile dye. Five values, and it stays at five.
+   * Palette — Indian textile dye (SPEC §4, SPEC-EXPERIENCE §3). One value
+   * per colour. Chrome is restrained, the dye is not: text, rules and
+   * labels stay ink and cream; the dye field and everything it touches is
+   * fully saturated.
+   *
    * Contrast against --ink (WCAG 2.x):
-   *   cream    16.24:1   any text
-   *   marigold  9.03:1   any text
-   *   madder    3.35:1   FAILS AA for text under 24px. Status fills and
-   *                      indicators only; put cream text on a madder fill
-   *                      (4.85:1) rather than madder text on ink.
-   *   indigo    1.96:1   surfaces only, never text or a lone boundary.
-   *                      cream on indigo 8.28:1, marigold on indigo 4.60:1.
+   *   cream    16.24:1   text on ink
+   *   paper    15.77:1   folder interior (§5.4) — ink text on it
+   *   kraft     8.70:1   folder cover — ink text on it
    * ------------------------------------------------------------------ */
   --ink: #0f0b0a;
   --cream: #f2e9d8;
-  --marigold: #e8a317;
-  --indigo: #2b3a8f;
-  --madder: #c1272d;
-
-  /* ------------------------------------------------------------------
-   * Experience layer (SPEC-EXPERIENCE §3). Chrome is restrained, the dye
-   * is not: text, rules and labels stay ink and cream; the dye field and
-   * everything it touches is fully saturated.
-   *
-   * Paper and kraft are the folder (§5.4) — the one light surface.
-   * ------------------------------------------------------------------ */
-  --paper: #efe6d2; /* folder interior. ink on paper 15.77:1 */
-  --kraft: #c9a873; /* folder cover. ink on kraft 8.70:1 */
+  --paper: #efe6d2;
+  --kraft: #c9a873;
 
   /*
-   * One dye per file. --on-dye-* is the text colour for a fill of that dye,
-   * whichever of ink or cream contrasts more (WCAG 2.x, measured):
+   * One dye per file (SPEC-EXPERIENCE §3). The rule: every dye fill carries
+   * ink text, and every dye is tuned so ink on it passes AA (4.5:1).
    *
-   *   madder    ink 4.11 / cream 3.95  -> ink.   FAILS AA for small text.
-   *   indigo    ink 3.77 / cream 4.31  -> cream. FAILS AA for small text.
-   *   marigold  ink 9.28               -> ink
-   *   peacock   ink 6.64               -> ink
-   *   mehendi   ink 7.05               -> ink
-   *   rani      ink 4.57               -> ink.   Passes AA, only just.
+   *   madder    ink 4.72   nudged from #D8322B (4.11) to pass
+   *   indigo    ink 4.91   nudged from #4F5FE0 (3.77) to pass
+   *   marigold  ink 9.28
+   *   peacock   ink 6.64
+   *   mehendi   ink 7.05
+   *   rani      ink 4.57   passes as given
    *
-   * Madder and indigo clear 3:1, so text on them must be large (24px+, or
-   * 18.66px+ bold) until that is resolved — see the E1 report.
+   * A new dye is added here with its ratio, and must clear 4.5:1 with ink
+   * before any file uses it.
    */
-  --dye-madder: #d8322b; /* CodeAutopsy */
-  --dye-indigo: #4f5fe0; /* Clarity */
-  --dye-marigold: #f2a20c; /* Prism */
+  --dye-madder: #e0443a; /* CodeAutopsy; also status */
+  --dye-indigo: #6573f0; /* Clarity */
+  --dye-marigold: #f2a20c; /* Prism; also the name */
   --dye-peacock: #13a89e; /* GlobeTrotter */
   --dye-mehendi: #7fa83a; /* Swasthya-AI */
   --dye-rani: #e1307a; /* Agrawal storefront */
 
-  --on-dye-madder: var(--ink);
-  --on-dye-indigo: var(--cream);
-  --on-dye-marigold: var(--ink);
-  --on-dye-peacock: var(--ink);
-  --on-dye-mehendi: var(--ink);
-  --on-dye-rani: var(--ink);
+  --on-dye: var(--ink); /* text on any dye fill — the rule above */
 
   /* ------------------------------------------------------------------
    * Semantic colour. Derived values are cream at reduced alpha — no new
-   * hex. Ratios below are measured blended over --ink; over --indigo
-   * they are lower, so re-check before using muted text on indigo.
+   * hex. Ratios below are measured blended over --ink.
    * ------------------------------------------------------------------ */
   --color-ground: var(--ink);
-  --color-surface: var(--indigo);
   --color-text: var(--cream);
   --color-text-muted: color-mix(in srgb, var(--cream) 64%, transparent); /* 6.95:1 */
   --color-text-faint: color-mix(in srgb, var(--cream) 56%, transparent); /* 5.53:1 — floor for text */
   --color-rule: color-mix(in srgb, var(--cream) 16%, transparent); /* decorative dividers */
   --color-rule-strong: color-mix(in srgb, var(--cream) 40%, transparent); /* 3.34:1 — boundaries that carry meaning */
-  --color-accent: var(--marigold); /* the name, key emphasis; small deliberate hits */
-  --color-status: var(--madder); /* LIVE, stamps, flags — nowhere else */
-  --color-focus: var(--marigold);
+  --color-accent: var(--dye-marigold); /* the name, links, focus — 9.28:1 */
+  --color-status: var(--dye-madder); /* Live, stamps, flags — a fill, with --on-dye text */
+  --color-focus: var(--dye-marigold);
   --color-wash: color-mix(in srgb, var(--cream) 6%, transparent); /* hovered row fill — too faint to read as a surface */
 
   --focus-width: 2px;

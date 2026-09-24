@@ -116,7 +116,7 @@
   display: inline-block;
   padding: var(--space-3xs) var(--space-2xs);
   background: var(--color-status);
-  color: var(--color-text);
+  color: var(--on-dye);
 }
 
 /* Wide: the §7 row — number, name, year, domain, status, all on one line. */

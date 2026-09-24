@@ -121,9 +121,9 @@ function PreviewField({ label, field }: { label: string; field: Field }) {
 }
 
 /*
- * Status is the one place madder appears (§4). It fails AA as text on ink,
- * so it ships as cream on a madder fill (4.85:1), which is what the token
- * layer prescribes. An undecided status stays a TODO marker and gets no fill.
+ * Status is a madder fill with ink text (4.72:1) — every dye fill carries
+ * ink (styles/tokens.css). An undecided status stays a TODO marker and gets
+ * no fill.
  */
 function Status({ field }: { field: Field }) {
   if (isTodo(field)) return <Value field={field} />
