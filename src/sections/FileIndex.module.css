@@ -1,6 +1,8 @@
 /*
- * 02 INDEX (SPEC §4, §7). Record treatment: structured, mono, bordered,
- * dense, left-aligned and gridded.
+ * 02 INDEX (SPEC §4, §7). Record treatment: structured, bordered, dense,
+ * left-aligned and gridded. File names are display type — Instrument Serif,
+ * large, as named — and mono is for the record data around them
+ * (SPEC-EXPERIENCE §2, §3). Nothing is set in tracked capitals.
  *
  * Column alignment across rows is real grid alignment, not guessed widths —
  * the list owns the tracks and each row subgrids onto them, so a long TODO
@@ -64,8 +66,6 @@
   grid-column: 1;
   grid-row: 1;
   font-size: var(--step--1);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--color-text-faint);
   transition: color var(--duration-state) var(--ease-state);
 }
@@ -73,9 +73,9 @@
 .name {
   grid-column: 2 / -1;
   grid-row: 1;
-  font-size: var(--step-1);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-family: var(--font-serif);
+  font-size: var(--step-4);
+  line-height: var(--leading-heading);
   transition: color var(--duration-state) var(--ease-state);
 }
 
@@ -109,8 +109,6 @@
 .domain,
 .statusCell {
   font-size: var(--step--1);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--color-text-muted);
 }
 
@@ -119,7 +117,6 @@
   padding: var(--space-3xs) var(--space-2xs);
   background: var(--color-status);
   color: var(--color-text);
-  letter-spacing: var(--tracking-label);
 }
 
 /* Wide: the §7 row — number, name, year, domain, status, all on one line. */
@@ -185,8 +182,6 @@
 .previewNumber {
   margin: 0;
   font-size: var(--step--1);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--color-accent);
 }
 
@@ -209,8 +204,6 @@
 .previewLabel {
   margin: 0;
   font-size: var(--step--1);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--color-text-faint);
 }
 

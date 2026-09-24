@@ -9,8 +9,8 @@
  * t=1.8  the sheet lifts off the top     (§6 puts the dye bloom here: step 5)
  *
  * The lift is the file-open gesture (FileOpen.module.css) at full-screen
- * scale: the same --ease-lift and --duration-lift, travelling the whole
- * viewport rather than --lift-distance.
+ * scale: the same --paper-ease and --paper-duration, travelling the whole
+ * viewport rather than --paper-lift-distance.
  */
 
 .cover {
@@ -20,7 +20,7 @@
   padding-block-start: var(--space-s);
   padding-inline: var(--gutter);
   background: var(--color-ground);
-  animation: lift var(--duration-lift) var(--ease-lift) var(--entry-lift-at) both;
+  animation: lift var(--paper-duration) var(--paper-ease) var(--entry-lift-at) both;
 }
 
 @keyframes lift {

@@ -14,7 +14,7 @@ import s from './Capability.module.css'
  */
 export function Capability() {
   return (
-    <Section id="capability" title="Capability">
+    <Section id="capability" label="capability">
       <p className={s.pending}>
         <Value field={todo('four or five entries with honest levels — not yet chosen (SPEC §5)')} />
       </p>

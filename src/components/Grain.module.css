@@ -1,0 +1,53 @@
+/*
+ * Paper grain (SPEC-EXPERIENCE §6): SVG fractal noise, desaturated, at
+ * --paper-grain-opacity, re-rolled at 8fps by jumping the tile to a new
+ * offset — steps, not a slide, so it reads as grain, not as drift.
+ *
+ * The noise is one SVG, rasterised once as a background tile; the animation
+ * only moves the layer, which stays on the compositor. The layer is twice
+ * the viewport so no offset ever shows an edge.
+ */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: var(--layer-grain);
+  pointer-events: none;
+  opacity: var(--paper-grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain calc(var(--paper-grain-step) * 8) steps(1) infinite;
+}
+
+/* Eight offsets, one per step. Arbitrary but fixed, so no two frames match. */
+@keyframes grain {
+  0% {
+    translate: 0 0;
+  }
+  12.5% {
+    translate: -3% 2%;
+  }
+  25% {
+    translate: 4% -5%;
+  }
+  37.5% {
+    translate: -6% -1%;
+  }
+  50% {
+    translate: 2% 6%;
+  }
+  62.5% {
+    translate: -2% -7%;
+  }
+  75% {
+    translate: 7% 3%;
+  }
+  87.5% {
+    translate: -5% 5%;
+  }
+}
+
+/* Still grain under reduced motion — the surface stays, the flicker goes. */
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    animation: none;
+  }
+}

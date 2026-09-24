@@ -16,40 +16,15 @@
  * stroke that is slightly off the letter's centre changes nothing visible.
  */
 
-import opentype from 'opentype.js'
-import { readFileSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { font, outline as toOutline, round4 } from './outline.mjs'
 import { strokes, PEN_WIDTH } from './strokes.mjs'
 
-const here = (file) => fileURLToPath(new URL(file, import.meta.url))
-
 const NAME = 'Prince Agrawal'
-const FONT = here('./caveat-latin-400-normal.woff')
-const OUT = here('../../src/content/name.ts')
+const OUT = fileURLToPath(new URL('../../src/content/name.ts', import.meta.url))
 
-const buf = readFileSync(FONT)
-const font = opentype.parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength))
-
-/* Font units, baseline at y = 0, y pointing down (SVG orientation). */
-const path = font.getPath(NAME, 0, 0, font.unitsPerEm, { kerning: true })
-
-const n = (v) => String(Math.round(v))
-const outline = path.commands
-  .map((c) => {
-    switch (c.type) {
-      case 'M':
-        return `M${n(c.x)} ${n(c.y)}`
-      case 'L':
-        return `L${n(c.x)} ${n(c.y)}`
-      case 'Q':
-        return `Q${n(c.x1)} ${n(c.y1)} ${n(c.x)} ${n(c.y)}`
-      case 'C':
-        return `C${n(c.x1)} ${n(c.y1)} ${n(c.x2)} ${n(c.y2)} ${n(c.x)} ${n(c.y)}`
-      case 'Z':
-        return 'Z'
-    }
-  })
-  .join('')
+const { d: outline, box } = toOutline(NAME)
 
 /*
  * Pen strokes: point lists in the same units, smoothed into cubic curves
@@ -87,12 +62,7 @@ const timed = strokes.map((points, i) => {
   return { d: smooth(points), start: round4(start), span: round4(lengths[i] / total) }
 })
 
-function round4(v) {
-  return Math.round(v * 1e4) / 1e4
-}
-
 /* The box covers both layers, with the pen's half-width as margin. */
-const box = path.getBoundingBox()
 const margin = PEN_WIDTH / 2
 const xs = strokes.flat().map((p) => p[0])
 const ys = strokes.flat().map((p) => p[1])

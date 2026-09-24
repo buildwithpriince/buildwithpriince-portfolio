@@ -48,7 +48,6 @@ a.endpoint:focus-visible {
   grid-column: 1;
   grid-row: 1;
   font-size: var(--step--1);
-  letter-spacing: var(--tracking-label);
   color: var(--color-text-faint);
   transition: color var(--duration-state) var(--ease-state);
 }
@@ -61,8 +60,6 @@ a.endpoint:focus-visible .number {
 .label {
   grid-column: 2;
   grid-row: 1;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   transition: color var(--duration-state) var(--ease-state);
 }
 

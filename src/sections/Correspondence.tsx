@@ -43,7 +43,7 @@ const endpoints: Endpoint[] = [
 
 export function Correspondence() {
   return (
-    <Section id="correspondence" title="Correspondence">
+    <Section id="correspondence" label="correspondence">
       <ol className={s.endpoints}>
         {endpoints.map(({ label, handle, href }, index) => {
           const number = String(index + 1).padStart(2, '0')

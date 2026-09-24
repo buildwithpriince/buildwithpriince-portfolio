@@ -8,9 +8,18 @@ import { todo, type Field } from './todo'
  * from the record. A field that applies but is not yet known is a Todo.
  */
 
+/*
+ * Every file owns a dye (SPEC-EXPERIENCE §3): its row, its cursor drop, and
+ * later its preview, folder stain and the field while it is in focus. New
+ * files get new dyes from the same textile family — add the token to
+ * styles/tokens.css, with its contrast choice, before adding it here.
+ */
+export type Dye = 'madder' | 'indigo' | 'marigold' | 'peacock' | 'mehendi' | 'rani'
+
 export type FileRecord = {
   slug: string
   name: string
+  dye: Dye
   year: Field
   domain: Field
   status: Field
@@ -37,6 +46,7 @@ export const files: FileRecord[] = [
   {
     slug: 'codeautopsy',
     name: 'CodeAutopsy',
+    dye: 'madder',
     year: '2026',
     domain: 'Tooling',
     status: 'Live',
@@ -53,6 +63,7 @@ export const files: FileRecord[] = [
   {
     slug: 'clarity',
     name: 'Clarity',
+    dye: 'indigo',
     year: '2026',
     domain: 'Finance',
     status: 'Live',
@@ -70,6 +81,7 @@ export const files: FileRecord[] = [
   {
     slug: 'prism',
     name: 'Prism',
+    dye: 'marigold',
     year: '2026',
     domain: 'Finance',
     status: 'Live',
@@ -94,6 +106,7 @@ export const files: FileRecord[] = [
      */
     slug: 'globetrotter',
     name: 'GlobeTrotter',
+    dye: 'peacock',
     year: '2026',
     domain: todo('domain'),
     status: todo('status'),
@@ -112,6 +125,7 @@ export const files: FileRecord[] = [
   {
     slug: 'swasthya-ai',
     name: 'Swasthya-AI',
+    dye: 'mehendi',
     year: '2026',
     domain: todo('domain'),
     status: todo('status'),
@@ -130,6 +144,7 @@ export const files: FileRecord[] = [
     // Start date unknown; placed last because it is ongoing.
     slug: 'agrawal-storefront',
     name: 'Agrawal storefront',
+    dye: 'rani',
     year: todo('year started'),
     domain: todo('domain'),
     status: 'Live',

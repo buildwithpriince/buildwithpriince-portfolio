@@ -1,0 +1,12 @@
+/*
+ * Handwritten words sit in a line of text like a word would: height from the
+ * em, width from the path's own aspect ratio, coloured by currentColor.
+ */
+.hand {
+  display: inline-block;
+  block-size: calc(1em * var(--hand-height-em));
+  inline-size: auto;
+  vertical-align: middle;
+  overflow: visible;
+  fill: currentColor;
+}

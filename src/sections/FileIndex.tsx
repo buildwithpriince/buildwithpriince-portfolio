@@ -28,7 +28,7 @@ export function FileIndex() {
   const preview = previewIndex === -1 ? null : files[previewIndex]
 
   return (
-    <Section id="index" title="Index">
+    <Section id="index" label="index">
       <div className={s.layout}>
         <ol
           className={s.rows}
@@ -42,6 +42,8 @@ export function FileIndex() {
               <a
                 className={s.row}
                 href={filePath(file.slug)}
+                data-cursor="open"
+                data-dye={file.dye}
                 onClick={(event) => {
                   if (!isPlainClick(event)) return
                   event.preventDefault()

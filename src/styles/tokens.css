@@ -25,6 +25,44 @@
   --madder: #c1272d;
 
   /* ------------------------------------------------------------------
+   * Experience layer (SPEC-EXPERIENCE §3). Chrome is restrained, the dye
+   * is not: text, rules and labels stay ink and cream; the dye field and
+   * everything it touches is fully saturated.
+   *
+   * Paper and kraft are the folder (§5.4) — the one light surface.
+   * ------------------------------------------------------------------ */
+  --paper: #efe6d2; /* folder interior. ink on paper 15.77:1 */
+  --kraft: #c9a873; /* folder cover. ink on kraft 8.70:1 */
+
+  /*
+   * One dye per file. --on-dye-* is the text colour for a fill of that dye,
+   * whichever of ink or cream contrasts more (WCAG 2.x, measured):
+   *
+   *   madder    ink 4.11 / cream 3.95  -> ink.   FAILS AA for small text.
+   *   indigo    ink 3.77 / cream 4.31  -> cream. FAILS AA for small text.
+   *   marigold  ink 9.28               -> ink
+   *   peacock   ink 6.64               -> ink
+   *   mehendi   ink 7.05               -> ink
+   *   rani      ink 4.57               -> ink.   Passes AA, only just.
+   *
+   * Madder and indigo clear 3:1, so text on them must be large (24px+, or
+   * 18.66px+ bold) until that is resolved — see the E1 report.
+   */
+  --dye-madder: #d8322b; /* CodeAutopsy */
+  --dye-indigo: #4f5fe0; /* Clarity */
+  --dye-marigold: #f2a20c; /* Prism */
+  --dye-peacock: #13a89e; /* GlobeTrotter */
+  --dye-mehendi: #7fa83a; /* Swasthya-AI */
+  --dye-rani: #e1307a; /* Agrawal storefront */
+
+  --on-dye-madder: var(--ink);
+  --on-dye-indigo: var(--cream);
+  --on-dye-marigold: var(--ink);
+  --on-dye-peacock: var(--ink);
+  --on-dye-mehendi: var(--ink);
+  --on-dye-rani: var(--ink);
+
+  /* ------------------------------------------------------------------
    * Semantic colour. Derived values are cream at reduced alpha — no new
    * hex. Ratios below are measured blended over --ink; over --indigo
    * they are lower, so re-check before using muted text on indigo.
@@ -48,9 +86,9 @@
    * Faces. One job each.
    * ------------------------------------------------------------------ */
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas,
-    'Liberation Mono', monospace; /* structure and display */
+    'Liberation Mono', monospace; /* record data only (SPEC-EXPERIENCE §3) */
   --font-serif: 'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Georgia,
-    serif; /* italic grounding line inside statements, nowhere else */
+    serif; /* display: file names, the statement band (SPEC-EXPERIENCE §3) */
 
   --weight-regular: 400;
   --weight-medium: 500;
@@ -122,23 +160,44 @@
   --rule-width: 1px;
 
   /* ------------------------------------------------------------------
-   * Motion. One vocabulary, so the file-open (§7) and the entry cover-lift
-   * (§6) read as the same gesture at two scales. Step 4 reuses these rather
-   * than inventing its own timing — that is the whole point of naming them.
+   * Motion — the three materials (SPEC-EXPERIENCE §1, §6). Every movement
+   * on the site is ink, dye, or paper, and takes its timing from that
+   * material's tokens. If a movement cannot name its material, it does not
+   * move. Set text never fades or slides in.
    *
-   * --duration-lift is the panel travelling; --duration-fade is anything
-   * that only changes opacity, which needs to be quicker or it reads as lag.
+   * Ink draws: lines, strokes, handwriting. A hand keeps its pace inside a
+   * stroke, so ink is linear; the rhythm comes from stroke order.
    * ------------------------------------------------------------------ */
-  --ease-lift: cubic-bezier(0.22, 1, 0.36, 1); /* decelerating — a cover rising, not a bounce */
-  --ease-state: cubic-bezier(0.4, 0, 0.2, 1); /* hover and focus changes */
-  --duration-lift: 420ms;
-  --duration-fade: 180ms;
+  --ink-ease: linear;
+  --ink-draw: 600ms; /* a rule or a label drawing on */
+
+  /* Dye diffuses: blooms, floods, stains. Spreads fast, settles slowly. */
+  --dye-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dye-bloom: 600ms; /* a local bloom — a row fill, the cursor drop */
+  --dye-retint: 1200ms; /* the whole field matching a file (§4) */
+
+  /* Paper moves as an object: lifts, folds, slides, stamps. Decelerating —
+     a cover rising, not a bounce. The file-open and the entry's cover lift
+     are the same paper gesture at two scales. */
+  --paper-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --paper-duration: 420ms;
+  --paper-lift-distance: 2rem;
+  --paper-grain-step: 125ms; /* grain re-rolls at 8fps (§6) */
+  --paper-grain-opacity: 0.06;
+
+  /*
+   * State changes that answer an input — hover and focus colour. Not a
+   * material: nothing moves, a value changes, and it starts within a frame.
+   * --duration-fade is the file-open's opacity, pending its rebuild as the
+   * folder in E5; nothing new should use it.
+   * ------------------------------------------------------------------ */
+  --ease-state: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-state: 120ms;
-  --lift-distance: 2rem;
+  --duration-fade: 180ms;
 
   /* ------------------------------------------------------------------
    * Entry sequence (SPEC §6). Offsets from first paint, straight from the
-   * §6 timeline. The cover lift itself is --duration-lift/--ease-lift
+   * §6 timeline. The cover lift itself is --paper-duration/--paper-ease
    * above — the same gesture as the file-open, not a timing of its own.
    * Lift ends at 1800 + 420 = 2220ms, inside the 2.5s ceiling.
    *
@@ -152,12 +211,19 @@
   --entry-lift-at: 1800ms; /* the cover lifts; §6 puts the dye here in step 5 */
 
   /* ------------------------------------------------------------------
-   * Layers. Only the entry needs any: the drawn name sits above the cover
-   * so that it is the hero's name when the cover lifts away (§6).
-   * The file-open is a modal <dialog>, in the top layer, above all of it.
+   * Layers. The drawn name sits above the entry cover so that it is the
+   * hero's name when the cover lifts away (SPEC §6). Grain lies over
+   * everything, the cursor over the grain. The file-open is a modal
+   * <dialog> in the browser's top layer, above all of these.
    * ------------------------------------------------------------------ */
   --layer-cover: 1;
   --layer-name: 2;
+  --layer-grain: 3;
+  --layer-cursor: 4;
+
+  /* Custom cursor (SPEC-EXPERIENCE §6): a cream ring, a dye drop over files. */
+  --cursor-ring: 1.25rem;
+  --cursor-drop: 1.75rem;
 }
 
 /*
@@ -168,9 +234,12 @@
  */
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --duration-lift: 0.01ms;
+    --ink-draw: 0.01ms;
+    --dye-bloom: 0.01ms;
+    --dye-retint: 0.01ms;
+    --paper-duration: 0.01ms;
+    --paper-lift-distance: 0rem;
     --duration-fade: 0.01ms;
     --duration-state: 0.01ms;
-    --lift-distance: 0rem;
   }
 }

@@ -7,8 +7,9 @@
  * design decision, not a convenience — check SPEC §4 first.
  *
  * The handwriting face (Caveat 400) has no @font-face on purpose. The name
- * ships as SVG paths converted from that face (§6, scripts/name/), so the
- * font file is a build-time input and never needs to load in the browser.
+ * and every handwritten word ship as SVG paths converted from that face
+ * (SPEC §6, scripts/name/), so the font file is a build-time input and never
+ * needs to load in the browser.
  */
 
 @font-face {
@@ -27,7 +28,18 @@
   src: url('../assets/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
 }
 
-/* Italic only — the serif exists solely as the grounding line in statements. */
+/*
+ * Instrument Serif is the display face (SPEC-EXPERIENCE §3): file names
+ * upright, and the italic for the statement's second line.
+ */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/instrument-serif-latin-400-normal.woff2') format('woff2');
+}
+
 @font-face {
   font-family: 'Instrument Serif';
   font-style: italic;

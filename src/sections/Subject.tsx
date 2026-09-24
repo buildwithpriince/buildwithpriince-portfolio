@@ -1,6 +1,8 @@
+import { Picture } from '../components/Picture'
 import { Record, RecordField } from '../components/Record'
 import { Section } from '../components/Section'
 import { Value } from '../components/Value'
+import { images } from '../content/images'
 import { todo } from '../content/todo'
 import s from './Subject.module.css'
 
@@ -8,23 +10,20 @@ import s from './Subject.module.css'
  * 04 SUBJECT (SPEC §5). A personnel file: the portrait plate beside the
  * record, not a photo with prose wrapped around it.
  *
- * The childhood-photo hover §5 asks for is NOT built here. It needs the
- * second image loaded, and §10 caps all images on the site at 400 KB total
- * against the 3 MB currently sitting in public/. Building the hover before
- * that conversion means shipping the regression the conversion exists to
- * prevent, so it waits for the performance pass.
+ * The childhood-photo hover (SPEC-EXPERIENCE §5.6) is not built here yet; it
+ * belongs to E7. Its image is already converted (content/images.ts).
  */
 export function Subject() {
   return (
-    <Section id="subject" title="Subject">
+    <Section id="subject" label="subject">
       <div className={s.layout}>
         <figure className={s.plate}>
-          <img
+          {/* sizes matches .plate's max-width. */}
+          <Picture
             className={s.portrait}
-            src="/prince-portrait.jpeg"
+            image={images.portrait}
             alt="Prince Agrawal"
-            loading="lazy"
-            decoding="async"
+            sizes="(min-width: 18rem) 18rem, 100vw"
           />
           <figcaption className={s.plateLabel}>Agrawal, P.</figcaption>
         </figure>

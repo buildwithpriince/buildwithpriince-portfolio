@@ -1,0 +1,74 @@
+/*
+ * The custom cursor (SPEC-EXPERIENCE §6). The element's origin is the
+ * pointer's hotspot; the mark is centred on it and the label sits to the
+ * lower right, clear of what is being pointed at.
+ *
+ * Ring to drop is dye: the ring fills with the file's dye as it swells, on
+ * the dye tokens. The label is handwriting (the archivist's hand, §3) and
+ * simply appears — set text does not fade or slide in (§1).
+ */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--layer-cursor);
+  pointer-events: none;
+  display: none;
+}
+
+/* Fine pointers only, and never over the file-open: that is a modal
+   <dialog> in the top layer, which this element cannot sit above. */
+@media (hover: hover) and (pointer: fine) {
+  :global(html.has-cursor:not(:has(dialog[open]))) .cursor[data-visible='true'] {
+    display: block;
+  }
+
+  :global(html.has-cursor:not(:has(dialog[open]))),
+  :global(html.has-cursor:not(:has(dialog[open])) *) {
+    cursor: none;
+  }
+}
+
+.mark {
+  position: absolute;
+  inline-size: var(--cursor-ring);
+  block-size: var(--cursor-ring);
+  translate: -50% -50%;
+  border: var(--rule-width) solid var(--color-text);
+  border-radius: 50%;
+  background: transparent;
+  transition:
+    inline-size var(--dye-bloom) var(--dye-ease),
+    block-size var(--dye-bloom) var(--dye-ease),
+    background-color var(--dye-bloom) var(--dye-ease),
+    border-color var(--dye-bloom) var(--dye-ease);
+}
+
+.cursor[data-kind='open'] .mark {
+  inline-size: var(--cursor-drop);
+  block-size: var(--cursor-drop);
+  background: var(--cursor-dye);
+  border-color: var(--cursor-dye);
+}
+
+.label {
+  position: absolute;
+  inset-inline-start: calc(var(--cursor-drop) / 2 + var(--space-3xs));
+  inset-block-start: calc(var(--cursor-drop) / 2 - var(--space-3xs));
+  font-size: var(--step-2);
+  line-height: var(--leading-display);
+  color: var(--color-text);
+}
+
+.open,
+.write,
+.visit {
+  display: none;
+}
+
+.cursor[data-kind='open'] .open,
+.cursor[data-kind='write'] .write,
+.cursor[data-kind='visit'] .visit {
+  display: block;
+}

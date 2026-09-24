@@ -51,6 +51,8 @@ export function FileOpen({ slug, onClose }: Props) {
     <dialog
       ref={ref}
       className={s.dialog}
+      /* Scrolls itself, natively — smooth scroll is for the page (lib/smoothScroll). */
+      data-lenis-prevent
       aria-labelledby={shown ? 'file-open-title' : undefined}
       /*
        * Escape fires cancel. Prevent the native close and route it through
@@ -68,7 +70,7 @@ export function FileOpen({ slug, onClose }: Props) {
       {shown && (
         <div className={s.panel} tabIndex={-1} autoFocus>
           <div className={s.bar}>
-            <p className={s.number}>FILE {shown.number}</p>
+            <p className={s.number}>File {shown.number}</p>
             <button type="button" className={s.close} onClick={onClose}>
               Close
             </button>

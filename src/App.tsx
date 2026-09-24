@@ -1,5 +1,8 @@
 import { useCallback, useState } from 'react'
+import { Cursor } from './components/Cursor'
+import { Grain } from './components/Grain'
 import { shouldPlayEntry } from './lib/entry'
+import { useSmoothScroll } from './lib/smoothScroll'
 import { Capability } from './sections/Capability'
 import { Correspondence } from './sections/Correspondence'
 import { Cover } from './sections/Cover'
@@ -17,6 +20,7 @@ import { Subject } from './sections/Subject'
 export function App() {
   const [entry, setEntry] = useState(shouldPlayEntry)
   const endEntry = useCallback(() => setEntry(false), [])
+  useSmoothScroll()
 
   return (
     <>
@@ -30,6 +34,8 @@ export function App() {
         <Correspondence />
       </main>
       <Footer />
+      <Grain />
+      <Cursor />
     </>
   )
 }

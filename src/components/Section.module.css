@@ -3,11 +3,15 @@
   padding-inline: var(--gutter);
 }
 
+/*
+ * The handwritten label. Chrome, so cream rather than a dye (SPEC-EXPERIENCE
+ * §3); large enough that the hand reads as handwriting, not as a glyph.
+ */
 .heading {
+  position: relative; /* holds the visually-hidden text */
   margin: 0 0 var(--space-xl);
-  font-size: var(--step--1);
-  font-weight: var(--weight-medium);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-text-faint);
+  font-size: var(--step-6);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-display);
+  color: var(--color-text);
 }
