@@ -156,7 +156,7 @@ Three faces, down from five on the current site. Each has exactly one job.
 | --- | --- | --- |
 | **IBM Plex Mono** | Structure *and* display | File records, labels, metadata — and set very large for statement lines. Already in the current stack. |
 | **Instrument Serif** (italic) | Contrast | Used only inside statement headlines, against large mono. Free, Google Fonts. |
-| **Handwriting** — test *Architects Daughter*, *Caveat* 300, *Shadows Into Light* | The name, entry only | Appears exactly twice: the entry animation and the footer. Nowhere else. |
+| **Caveat** 400 (handwriting) | The name, entry only | Appears exactly twice: the entry animation — whose drawn name stays on as the hero's name (§6) — and the footer. Nowhere else. Never loaded as a font; it ships as SVG paths. |
 
 **Delete:** DM Serif Display, Inter, Manrope, Space Grotesk.
 
@@ -169,6 +169,11 @@ distinctive. This is a deliberate choice, not a fallback.
 **Choose the handwriting face by typing "Prince Agrawal"** — not by copying the
 reference site's choice. The name has a descender-heavy *g* and two *r*s; the
 face that flatters a different name may not flatter this one.
+
+**Decided: Caveat 400** (step 4, 2026-09-24), chosen by typing the name against
+Architects Daughter and Shadows Into Light. The shortlist originally said
+"Caveat 300"; that weight does not exist — Caveat's weight axis runs 400–700 —
+and the sample it was judged on rendered at 400.
 
 ### Statement treatment
 
@@ -263,8 +268,28 @@ t=2.3   dye disperses; hero is already underneath, in place
   block first paint of real content.
 - Disabled entirely under `prefers-reduced-motion`.
 
-The name is drawn, not typed and not faded. Stroke animation on a path converted
-from the handwriting face.
+The name is drawn, not typed and not faded.
+
+**Decided: how the draw works** (step 4). A glyph is a filled outline, not a pen
+line, so animating its outline reads as tracing, not writing. The visible name
+is the Caveat outline, converted to SVG paths at build time
+(`scripts/name/build-name.mjs`). It is revealed by a mask of hand-authored
+centreline pen strokes (`scripts/name/strokes.mjs`), drawn in writing order at a
+constant pen speed. The strokes only have to cover the outline, not match it, so
+the shape on screen is always exactly the face. Two alternatives were rejected:
+stroking the outline wide enough to fill it thickens every letter, and stroking
+it thin then filling it ends in a fade.
+
+**Decided: the name is drawn in place.** It is drawn at its hero position, as
+the hero's own heading, one layer above the cover. When the cover lifts, the
+name does not move. There is one name, not a cover copy and a hero copy — that
+is what "the ink that writes the name becomes the ink that opens the site" means
+in practice.
+
+**Until step 5, the cover lifts where the dye goes.** At t=1.8 the cover lifts
+off the top of the screen with the file-open's motion tokens at full-screen
+scale (§7), finishing at 2.22s. How the dye bloom relates to the lift is for
+step 5 to settle.
 
 ---
 
@@ -554,6 +579,10 @@ session does not mistake the numbering for drift.
   requirements attached to no step. "Performance pass" was not specific enough
   to stop them being forgotten — the dependency hygiene above proves the
   failure mode. They are now listed individually under step 6.
+- **Footer name mark deferred** (2026-09-24). Step 4 converted the handwriting
+  face to paths but deliberately left the footer mark (§4, §5 07) out of scope;
+  the footer is still set in mono. It is attached to no numbered step yet, and
+  that needs deciding.
 
 ---
 
@@ -587,7 +616,7 @@ one, it has drifted.
 ## 14. Open questions
 
 - Subject (04) opening copy and the file descriptions (§9).
-- Handwriting face, pending a test with the actual name (§4).
+- Which step builds the footer name mark (§12 amendments).
 - **CodeAutopsy repo transfer — blocking for FILE 001.** Collaborator access does
   not surface a repo on a personal profile; only ownership does. Transfer from
   the other account (Settings → Transfer ownership), or clone and push fresh.
